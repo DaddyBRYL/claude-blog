@@ -9,7 +9,7 @@
 
 **The most comprehensive blog creation skill for Claude Code.**
 
-Strategy, briefs, calendars, writing, optimization, schema, repurposing, and full-site audits — all from slash commands. Dual-optimized for Google rankings (December 2025 Core Update) and AI citation platforms (ChatGPT, Perplexity, AI Overviews).
+Strategy, briefs, calendars, writing, optimization, schema, repurposing, and full-site audits — all from slash commands. Dual-optimized for Google rankings and AI citation platforms (ChatGPT, Perplexity, AI Overviews).
 
 ![Blog commands demo](assets/blog-command-demo.gif)
 ---
