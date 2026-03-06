@@ -46,7 +46,7 @@ follows the 6 pillars of dual optimization (Google rankings + AI citations).
 
 ### Phase 1.5: Template Selection
 
-Select the appropriate content template from the 12 templates in `blog/templates/`.
+Select the appropriate content template from the 12 templates in `templates/`.
 
 1. **Auto-detect content type** from the topic and search intent:
    | Signal | Template |
@@ -64,7 +64,7 @@ Select the appropriate content template from the 12 templates in `blog/templates
    | Survey results, experiment, original data | `data-research` |
    | Q&A, knowledge base, "What is X" | `faq-knowledge` |
 
-2. **Load the matching template** — Read from `blog/templates/<type>.md`
+2. **Load the matching template** — Read from `templates/<type>.md`
 3. **Adapt the outline** — Use the template's section structure, heading patterns,
    and word count guidance to shape Phase 3's outline
 4. **Fallback** — If no template clearly fits, use the generic outline structure

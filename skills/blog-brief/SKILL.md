@@ -77,7 +77,7 @@ criteria.
 1. Match search intent to template strength
 2. Check what format top-ranking competitors use
 3. Consider the user's available assets (data, expertise, tools)
-4. Load the matching template file from `blog/templates/[type].md`
+4. Load the matching template file from `templates/[type].md`
 5. Include the template name in the brief output
 
 ### Step 3: Competitive Analysis
@@ -109,7 +109,7 @@ Output format:
 
 ## Template
 **Recommended**: [template-name] -- [1-sentence rationale]
-**Template file**: `blog/templates/[type].md`
+**Template file**: `templates/[type].md`
 
 ## Target Keywords
 - **Primary**: [keyword] -- [estimated monthly search volume if available]

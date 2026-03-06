@@ -21,7 +21,7 @@ main() {
     echo ""
 
     # Determine source directory (local clone or piped from curl)
-    if [ -f "${BASH_SOURCE[0]:-}" ] && [ -d "$(dirname "${BASH_SOURCE[0]}")/blog" ]; then
+    if [ -f "${BASH_SOURCE[0]:-}" ] && [ -d "$(dirname "${BASH_SOURCE[0]}")/skills/blog" ]; then
         SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     else
         echo "→ Cloning claude-blog..."
@@ -43,6 +43,7 @@ main() {
     mkdir -p "${SKILL_DIR}/blog/references"
     mkdir -p "${SKILL_DIR}/blog/templates"
     mkdir -p "${SKILL_DIR}/blog/scripts"
+    mkdir -p "${SKILL_DIR}/blog"
     for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart; do
         mkdir -p "${SKILL_DIR}/${skill}"
     done
@@ -50,18 +51,18 @@ main() {
 
     # Copy main skill
     echo "→ Installing main skill: blog..."
-    cp "${SCRIPT_DIR}/blog/SKILL.md" "${SKILL_DIR}/blog/SKILL.md"
+    cp "${SCRIPT_DIR}/skills/blog/SKILL.md" "${SKILL_DIR}/blog/SKILL.md"
 
     # Copy references
     echo "→ Installing reference files..."
-    if ls "${SCRIPT_DIR}/blog/references/"*.md &>/dev/null; then
-        cp "${SCRIPT_DIR}/blog/references/"*.md "${SKILL_DIR}/blog/references/"
+    if ls "${SCRIPT_DIR}/skills/blog/references/"*.md &>/dev/null; then
+        cp "${SCRIPT_DIR}/skills/blog/references/"*.md "${SKILL_DIR}/blog/references/"
     fi
 
     # Copy templates
-    if ls "${SCRIPT_DIR}/blog/templates/"*.md &>/dev/null; then
+    if ls "${SCRIPT_DIR}/skills/blog/templates/"*.md &>/dev/null; then
         echo "→ Installing content templates..."
-        cp "${SCRIPT_DIR}/blog/templates/"*.md "${SKILL_DIR}/blog/templates/"
+        cp "${SCRIPT_DIR}/skills/blog/templates/"*.md "${SKILL_DIR}/blog/templates/"
     fi
 
     # Copy sub-skills

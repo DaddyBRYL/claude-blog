@@ -1,7 +1,7 @@
 # Command Reference
 
 Complete reference for all 12 `/blog` slash commands. Every command is invoked
-through the main orchestrator (`blog/SKILL.md`), which routes to the appropriate
+through the main orchestrator (`skills/blog/SKILL.md`), which routes to the appropriate
 sub-skill.
 
 ## Command Overview
@@ -521,7 +521,7 @@ changes and focuses on updating data and signals.
 
 ## Command Routing
 
-The main orchestrator (`blog/SKILL.md`) parses user input and routes to
+The main orchestrator (`skills/blog/SKILL.md`) parses user input and routes to
 the correct sub-skill:
 
 ```

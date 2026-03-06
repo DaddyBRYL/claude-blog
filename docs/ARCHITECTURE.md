@@ -16,7 +16,7 @@ data flow, scoring methodology, file conventions, and extension points.
                                       v
                         +-----------------------------+
                         |    Main Orchestrator        |
-                        |      blog/SKILL.md          |
+                        |      skills/blog/SKILL.md          |
                         |                             |
                         |  - Command parsing          |
                         |  - Platform detection       |
@@ -29,8 +29,8 @@ data flow, scoring methodology, file conventions, and extension points.
               v                                            v
 +----------------------------+            +---------------------------+
 |     12 Sub-Skills          |            |    On-Demand References   |
-|  skills/blog-*/SKILL.md   |            |  blog/references/*.md     |
-|                            |            |  blog/templates/*.md      |
+|  skills/blog-*/SKILL.md   |            |  skills/blog/references/*.md     |
+|                            |            |  skills/blog/templates/*.md      |
 |  write    rewrite          |            |                           |
 |  analyze  brief            |            |  Loaded as needed         |
 |  calendar strategy         |            |  (RAG-style pattern)      |
@@ -57,7 +57,7 @@ data flow, scoring methodology, file conventions, and extension points.
 
 ### 1. Main Orchestrator
 
-**File**: `blog/SKILL.md`
+**File**: `skills/blog/SKILL.md`
 
 The entry point for all `/blog` commands. Responsibilities:
 
@@ -115,7 +115,7 @@ name, description, and available tools.
 
 ### 4. Reference Files (12)
 
-**Location**: `blog/references/*.md`
+**Location**: `skills/blog/references/*.md`
 
 Knowledge documents loaded on demand (not preloaded). Each reference covers
 a specific optimization domain:
@@ -137,7 +137,7 @@ a specific optimization domain:
 
 ### 5. Content Templates (12)
 
-**Location**: `blog/templates/*.md`
+**Location**: `skills/blog/templates/*.md`
 
 Structural templates for different content types. Each template defines
 section structure, word count targets, and format-specific guidance.
@@ -171,7 +171,7 @@ Code's context as a CLI tool. Provides:
 /blog write "topic"
       |
       v
-  Orchestrator (blog/SKILL.md)
+  Orchestrator (skills/blog/SKILL.md)
       |
       +-- Loads: references/content-rules.md
       |         references/visual-media.md
@@ -326,11 +326,11 @@ Platform detection affects:
 
 | Component | Location | Naming |
 |-----------|----------|--------|
-| Main skill | `blog/SKILL.md` | Fixed name |
+| Main skill | `skills/blog/SKILL.md` | Fixed name |
 | Sub-skills | `skills/blog-<command>/SKILL.md` | Prefix `blog-` + command name |
 | Agents | `agents/blog-<role>.md` | Prefix `blog-` + role name |
-| References | `blog/references/<topic>.md` | Kebab-case topic name |
-| Templates | `blog/templates/<type>.md` | Kebab-case content type |
+| References | `skills/blog/references/<topic>.md` | Kebab-case topic name |
+| Templates | `skills/blog/templates/<type>.md` | Kebab-case content type |
 | Scripts | `scripts/<name>.py` | Snake-case script name |
 
 ---
@@ -340,7 +340,7 @@ Platform detection affects:
 ### Adding a New Command
 
 1. Create `skills/blog-<name>/SKILL.md` with YAML frontmatter
-2. Add routing logic to `blog/SKILL.md` orchestrator
+2. Add routing logic to `skills/blog/SKILL.md` orchestrator
 3. Update `install.sh` and `install.ps1` to copy the new sub-skill
 4. Update `uninstall.sh` to remove it
 
@@ -352,13 +352,13 @@ Platform detection affects:
 
 ### Adding a New Reference
 
-1. Create `blog/references/<topic>.md`
+1. Create `skills/blog/references/<topic>.md`
 2. Document when to load it in the orchestrator
 3. Update `install.sh` to copy the new reference file
 
 ### Adding a New Template
 
-1. Create `blog/templates/<type>.md`
+1. Create `skills/blog/templates/<type>.md`
 2. Define section structure, markers, and word count targets
 3. Add template selection logic to `blog-write`
 

@@ -18,13 +18,19 @@ Strategy, briefs, calendars, writing, optimization, schema, repurposing, and ful
 
 ## Quick Start
 
-One-command install (Unix/macOS):
+**Plugin install (recommended):**
+
+```bash
+/plugin install claude-blog@AgriciDaniel
+```
+
+**Or one-command install (Unix/macOS):**
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
 ```
 
-Or clone and install manually:
+**Or clone and install manually:**
 
 ```bash
 git clone https://github.com/AgriciDaniel/claude-blog.git
@@ -32,7 +38,7 @@ cd claude-blog
 chmod +x install.sh && ./install.sh
 ```
 
-Windows (PowerShell):
+**Windows (PowerShell):**
 ```powershell
 .\install.ps1
 ```
@@ -93,36 +99,14 @@ Next.js/MDX, Astro, Hugo, Jekyll, WordPress, Ghost, 11ty, Gatsby, and static HTM
 
 ```
 claude-blog/
-├── blog/
-│   ├── SKILL.md                        # Main orchestrator (12 commands)
-│   ├── references/                     # 12 on-demand reference docs
-│   │   ├── google-landscape-2026.md
-│   │   ├── geo-optimization.md
-│   │   ├── content-rules.md
-│   │   ├── visual-media.md
-│   │   ├── quality-scoring.md
-│   │   ├── platform-guides.md
-│   │   ├── distribution-playbook.md
-│   │   ├── content-templates.md
-│   │   ├── eeat-signals.md
-│   │   ├── ai-crawler-guide.md
-│   │   ├── schema-stack.md
-│   │   └── internal-linking.md
-│   └── templates/                      # 12 content type templates
-│       ├── how-to-guide.md
-│       ├── listicle.md
-│       ├── case-study.md
-│       ├── comparison.md
-│       ├── pillar-page.md
-│       ├── product-review.md
-│       ├── thought-leadership.md
-│       ├── roundup.md
-│       ├── tutorial.md
-│       ├── news-analysis.md
-│       ├── data-research.md
-│       └── faq-knowledge.md
-├── skills/                             # 13 sub-skills
-│   ├── blog-write/SKILL.md
+├── .claude-plugin/
+│   └── plugin.json                     # Plugin metadata (name, description, author)
+├── skills/
+│   ├── blog/                           # Main orchestrator
+│   │   ├── SKILL.md                    # Routes all 12 commands
+│   │   ├── references/                 # 12 on-demand reference docs
+│   │   └── templates/                  # 12 content type templates
+│   ├── blog-write/SKILL.md            # Sub-skills (12 user-facing + 1 internal)
 │   ├── blog-rewrite/SKILL.md
 │   ├── blog-analyze/SKILL.md
 │   ├── blog-brief/SKILL.md
@@ -142,24 +126,17 @@ claude-blog/
 │   └── blog-reviewer.md
 ├── scripts/
 │   └── analyze_blog.py                 # Python quality analysis (5-category scoring)
+├── tests/                              # pytest test suite
+│   ├── conftest.py
+│   └── test_analyze_blog.py
 ├── docs/                               # 6 documentation files
-│   ├── INSTALLATION.md
-│   ├── COMMANDS.md
-│   ├── ARCHITECTURE.md
-│   ├── TEMPLATES.md
-│   ├── TROUBLESHOOTING.md
-│   └── MCP-INTEGRATION.md
-├── assets/                             # Images and demo GIFs
-│   ├── header.jpeg
-│   ├── blog-write-demo.gif
-│   └── blog-command-demo.gif
-├── install.sh                          # Unix/macOS installer
+├── .github/workflows/ci.yml           # CI pipeline
+├── install.sh                          # Unix/macOS installer (fallback)
 ├── install.ps1                         # Windows PowerShell installer
-├── uninstall.sh                        # Unix/macOS uninstaller
-├── uninstall.ps1                       # Windows PowerShell uninstaller
+├── pyproject.toml                      # Python project config
 ├── requirements.txt                    # Python dependencies
+├── CONTRIBUTING.md
 ├── CHANGELOG.md
-├── TODO.md
 ├── LICENSE
 └── README.md
 ```
@@ -207,10 +184,7 @@ Detailed documentation is available in [docs/](docs/):
 
 ## Contributing
 
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 

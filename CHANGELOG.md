@@ -45,11 +45,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Full documentation suite** (docs/): Installation, Commands, Architecture, Templates, Troubleshooting, MCP Integration
 
 ### Architecture
-- Main orchestrator: `blog/SKILL.md` (routes all 12 commands)
+- Main orchestrator: `skills/blog/SKILL.md` (routes all 12 commands)
 - 12 sub-skills in `skills/blog-*/SKILL.md`
 - 4 subagents in `agents/blog-*.md`
-- 12 reference docs in `blog/references/` (loaded on-demand)
-- 12 content templates in `blog/templates/`
+- 12 reference docs in `skills/blog/references/` (loaded on-demand)
+- 12 content templates in `skills/blog/templates/`
 
 ### Fixed
 - Corrected phantom "January 2026 Authenticity Update" references to verified **December 2025 Core Update** (Dec 11-29, 2025)

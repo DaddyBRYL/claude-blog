@@ -1,6 +1,6 @@
 # Content Type Template Reference
 
-Index and guide to the 12 content templates in `blog/templates/`. These
+Index and guide to the 12 content templates in `templates/`. These
 templates are structural blueprints that `/blog write` uses to generate
 consistently optimized content. This reference explains when to use each
 template, how the template system works, and how to customize it.
@@ -504,7 +504,7 @@ of the scoring rubric. The template ensures nothing is forgotten.
 
 ### Modifying an Existing Template
 
-Templates are editable markdown files in `~/.claude/skills/blog/templates/`.
+Templates are editable markdown files in `~/.claude/skills/templates/`.
 Changes take effect immediately -- no restart needed.
 
 1. Open the template file you want to modify
@@ -515,8 +515,8 @@ Changes take effect immediately -- no restart needed.
 
 1. Copy an existing template as a starting point:
    ```bash
-   cp ~/.claude/skills/blog/templates/how-to-guide.md \
-      ~/.claude/skills/blog/templates/my-custom-type.md
+   cp ~/.claude/skills/templates/how-to-guide.md \
+      ~/.claude/skills/templates/my-custom-type.md
    ```
 
 2. Define the section structure for your content type:
