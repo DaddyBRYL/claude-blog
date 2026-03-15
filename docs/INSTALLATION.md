@@ -111,7 +111,17 @@ If you prefer not to run the installer, copy files to these paths manually.
 │   ├── blog-schema/SKILL.md
 │   ├── blog-repurpose/SKILL.md
 │   ├── blog-geo/SKILL.md
-│   └── blog-audit/SKILL.md
+│   ├── blog-audit/SKILL.md
+│   ├── blog-chart/SKILL.md
+│   └── blog-image/
+│       ├── SKILL.md
+│       ├── references/
+│       │   ├── gemini-models.md
+│       │   ├── mcp-tools.md
+│       │   └── prompt-engineering-blog.md
+│       └── scripts/
+│           ├── setup_image_mcp.py
+│           └── validate_image_setup.py
 └── agents/
     ├── blog-researcher.md
     ├── blog-writer.md
@@ -124,7 +134,8 @@ If you prefer not to run the installer, copy files to these paths manually.
 ```bash
 # Create directories
 mkdir -p ~/.claude/skills/blog/{references,templates,scripts}
-mkdir -p ~/.claude/skills/blog-{write,rewrite,analyze,brief,calendar,strategy,outline,seo-check,schema,repurpose,geo,audit,chart}
+mkdir -p ~/.claude/skills/blog-{write,rewrite,analyze,brief,calendar,strategy,outline,seo-check,schema,repurpose,geo,audit,chart,image}
+mkdir -p ~/.claude/skills/blog-image/{references,scripts}
 mkdir -p ~/.claude/agents
 
 # Main skill
@@ -148,7 +159,40 @@ cp agents/*.md ~/.claude/agents/
 # Scripts
 cp scripts/analyze_blog.py ~/.claude/skills/blog/scripts/
 chmod +x ~/.claude/skills/blog/scripts/analyze_blog.py
+
+# Blog-image references and scripts
+cp skills/blog-image/references/*.md ~/.claude/skills/blog-image/references/
+cp skills/blog-image/scripts/*.py ~/.claude/skills/blog-image/scripts/
+chmod +x ~/.claude/skills/blog-image/scripts/*.py
 ```
+
+---
+
+## Optional: AI Image Generation
+
+`claude-blog` can generate custom blog images via Gemini AI (hero images, inline
+illustrations, social cards). This requires the nanobanana-mcp server and a free
+Google AI API key.
+
+### Setup
+
+```bash
+# Get your free API key at: https://aistudio.google.com/apikey
+python3 skills/blog-image/scripts/setup_image_mcp.py --key YOUR_KEY
+
+# Verify setup
+python3 skills/blog-image/scripts/validate_image_setup.py
+```
+
+### Requirements
+
+| Requirement | Version | Purpose |
+|-------------|---------|---------|
+| Node.js | 18+ | Runs `npx @ycse/nanobanana-mcp` |
+| Google AI API key | Free tier | Image generation via Gemini |
+
+Without this setup, all `/blog` commands work normally using stock photos from
+Pixabay/Unsplash/Pexels. AI image generation is an optional enhancement.
 
 ---
 
@@ -162,7 +206,7 @@ After installation, verify everything is in place:
 # Main skill
 ls ~/.claude/skills/blog/SKILL.md
 
-# Sub-skills (should list 12)
+# Sub-skills (should list 14)
 ls ~/.claude/skills/blog-*/SKILL.md | wc -l
 
 # Agents (should list 4)
@@ -247,14 +291,14 @@ chmod +x uninstall.sh
 This removes:
 
 - `~/.claude/skills/blog/` (main skill, references, templates, scripts)
-- `~/.claude/skills/blog-*/` (all 12 sub-skills)
+- `~/.claude/skills/blog-*/` (all 14 sub-skills including blog-chart and blog-image)
 - `~/.claude/agents/blog-*.md` (all 4 agents)
 
 ### Manual Uninstall
 
 ```bash
 rm -rf ~/.claude/skills/blog
-rm -rf ~/.claude/skills/blog-{write,rewrite,analyze,brief,calendar,strategy,outline,seo-check,schema,repurpose,geo,audit}
+rm -rf ~/.claude/skills/blog-{write,rewrite,analyze,brief,calendar,strategy,outline,seo-check,schema,repurpose,geo,audit,chart,image}
 rm -f ~/.claude/agents/blog-{researcher,writer,seo,reviewer}.md
 ```
 

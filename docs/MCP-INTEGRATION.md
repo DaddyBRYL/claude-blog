@@ -37,6 +37,50 @@ platforms.
 
 ---
 
+## Nano Banana MCP — AI Image Generation
+
+**The nanobanana-mcp server enables AI image generation** within blog workflows.
+When configured, `/blog write` and `/blog rewrite` can generate custom hero images,
+inline illustrations, and social preview cards via Gemini — in addition to stock
+photo sourcing from Pixabay/Unsplash/Pexels.
+
+### What It Enables
+
+| Feature | Without nanobanana-mcp | With nanobanana-mcp |
+|---------|----------------------|---------------------|
+| Hero/cover images | Stock photos only | Stock photos + AI-generated custom images |
+| Inline illustrations | Stock photos only | Stock photos + topic-specific AI illustrations |
+| OG/social cards | Stock photo crop | Custom AI-generated social preview images |
+| Image editing | Not available | Edit existing blog images (crop, enhance, restyle) |
+| Standalone use | Not available | `/blog image generate <idea>` for any image need |
+
+### Configuration
+
+The project `.mcp.json` is pre-configured. Set your API key:
+
+```bash
+# Option 1: Run the setup script
+python3 skills/blog-image/scripts/setup_image_mcp.py --key YOUR_KEY
+
+# Option 2: Set environment variable
+export GOOGLE_AI_API_KEY="your-key-from-aistudio.google.com"
+```
+
+Get a free API key at: https://aistudio.google.com/apikey
+
+### Verify Setup
+
+```bash
+python3 skills/blog-image/scripts/validate_image_setup.py
+```
+
+### Requirements
+
+- Node.js 18+ (for `npx`)
+- Google AI API key (free tier: ~10 RPM / ~500 images per day)
+
+---
+
 ## DataForSEO MCP (Recommended)
 
 **DataForSEO is the recommended MCP integration for `claude-blog`.** It provides
@@ -549,6 +593,7 @@ Validate both content quality and technical readiness for AI crawlers:
 
 | Integration | Status | Priority |
 |------------|--------|----------|
+| Nano Banana (Gemini) | **Available** | AI image generation for blog content |
 | DataForSEO | **Available** | Recommended — covers SERP, keywords, backlinks, on-page, domain, content, AI optimization |
 | Google Search Console | Planned | High — for first-party traffic/CTR data |
 | Google Analytics (GA4) | Future | Low |

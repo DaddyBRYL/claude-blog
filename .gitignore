@@ -48,6 +48,9 @@ credentials.json
 # Firebase
 firebase-debug.log
 
+# Generated output
+output/
+
 # Working documents
 definitive-resesarch-blueprint-for-claude-blog.md
 .github-audit/

@@ -4,7 +4,7 @@
 
 This repository contains **Claude Blog**, a Tier 4 Claude Code skill for blog content
 creation, optimization, and management. It follows the Agent Skills open standard and the
-3-layer architecture (directive, orchestration, execution). 14 sub-skills, 4 specialized
+3-layer architecture (directive, orchestration, execution). 15 sub-skills, 4 specialized
 subagents, and 12 content templates are dual-optimized for Google rankings (December 2025
 Core Update, E-E-A-T) and AI citations (GEO/AEO).
 
@@ -13,10 +13,10 @@ Core Update, E-E-A-T) and AI citations (GEO/AEO).
 ```
 claude-blog/
   CLAUDE.md                          # Project instructions (this file)
-  .claude-plugin/plugin.json         # Plugin manifest (v1.3.1)
-  .mcp.json                          # MCP server configuration
+  .claude-plugin/plugin.json         # Plugin manifest (v1.4.0)
+  .mcp.json                          # MCP server configuration (nanobanana-mcp)
   pyproject.toml                     # Python packaging (3.11+)
-  skills/                            # 14 sub-skills (blog/ is the orchestrator)
+  skills/                            # 15 sub-skills (blog/ is the orchestrator)
     blog/SKILL.md                   # Main orchestrator, routing, scoring
       references/                   # 12 on-demand knowledge files
       templates/                    # 12 content templates
@@ -34,6 +34,10 @@ claude-blog/
     blog-repurpose/SKILL.md       # Multi-platform repurposing
     blog-geo/SKILL.md             # AI citation optimization
     blog-audit/SKILL.md           # Full-site blog health assessment
+    blog-image/                    # AI image generation via Gemini
+      SKILL.md                    # Image generation sub-skill
+      references/                 # 3 reference docs (models, tools, prompts)
+      scripts/                    # MCP setup and validation scripts
   agents/                            # 4 specialized subagents
     blog-researcher.md              # Statistics and source research
     blog-writer.md                  # Content generation
@@ -58,6 +62,7 @@ claude-blog/
 | `/blog chart` | Inline SVG data visualization charts |
 | `/blog repurpose` | Multi-platform content repurposing |
 | `/blog geo` | AI citation optimization audit |
+| `/blog image` | AI image generation and editing via Gemini |
 | `/blog audit` | Full-site blog health assessment |
 
 ## Development Rules

@@ -92,6 +92,7 @@ Wait for user approval before proceeding.
    - Pixabay: `site:pixabay.com [topic keywords]`
    - Unsplash: `site:unsplash.com [topic keywords]`
    - Verify each URL returns HTTP 200
+   - If nanobanana-mcp is configured, offer AI generation for missing/insufficient images via `blog-image`
 4. **Plan charts** if post has fewer than 2:
    - Identify data suitable for visualization
    - Select diverse chart types
@@ -124,6 +125,7 @@ Apply changes in this order:
 - Add `coverImage` + `coverImageAlt` + `ogImage` if missing
   - Search Pixabay/Unsplash/Pexels for wide hero image (1200x630)
   - Or generate custom SVG cover via `blog-chart` (text-on-gradient with key stat)
+  - Or generate custom AI image via `blog-image` sub-skill (if nanobanana-mcp configured)
 - Verify tags/categories are appropriate
 
 #### 4c. Apply Answer-First Formatting
@@ -149,6 +151,7 @@ Every H2 section MUST open with a 40-60 word paragraph containing:
 #### 4g. Add Visual Elements
 - Embed new images after H2 headings, spaced evenly
 - Embed charts within relevant sections
+- If nanobanana-mcp configured: generate custom images for sections lacking good stock matches (invoke `blog-image` sub-skill via Task)
 - Adapt embed format to detected platform (MDX vs markdown vs HTML)
 
 #### 4h. Add/Improve FAQ

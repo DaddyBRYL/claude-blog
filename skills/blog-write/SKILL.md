@@ -86,6 +86,7 @@ Spawn a `blog-researcher` agent (or do inline research with WebSearch):
    - Fallback: `site:pexels.com [topic] wide banner`
    - Target dimensions: 1200x630 (OG-compatible) or 1920x1080
    - Or generate a custom SVG cover via `blog-chart` (text-on-gradient with key stat)
+   - Or generate a custom AI image via `blog-image` sub-skill (if nanobanana-mcp configured)
    - See `references/visual-media.md` for cover image sizing details
 3. **Find 3-5 inline images** from open-source platforms:
    - **Pixabay** (preferred): Search `site:pixabay.com [topic keywords]`
@@ -98,6 +99,10 @@ Spawn a `blog-researcher` agent (or do inline research with WebSearch):
 4. **Plan 2-4 data visualizations** from researched statistics
    - Select diverse chart types (see `references/visual-media.md`)
    - Map data points to chart formats
+5. **AI image generation** (optional, if nanobanana-mcp configured):
+   - If stock photo results are insufficient (< 3 good matches) or topic is too niche
+   - Generate custom hero image and/or inline illustrations via `blog-image` sub-skill
+   - Stock photos remain default — AI generation supplements, never replaces
 
 ### Phase 3: Outline Generation
 

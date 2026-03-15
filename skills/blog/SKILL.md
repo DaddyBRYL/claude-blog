@@ -6,7 +6,8 @@ description: >
   (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO). Writes,
   rewrites, analyzes, outlines, audits, and repurposes blog content with
   answer-first formatting, sourced statistics, Pixabay/Unsplash/Pexels images,
-  built-in SVG chart generation, JSON-LD schema generation, and freshness signals.
+  AI image generation via Gemini, built-in SVG chart generation, JSON-LD schema
+  generation, and freshness signals.
   Supports any platform (WordPress, Next.js MDX, Hugo, Ghost, Astro, Jekyll,
   11ty, Gatsby, HTML). Use when user says "blog", "write blog", "blog post",
   "blog strategy", "content brief", "editorial calendar", "analyze blog",
@@ -17,9 +18,9 @@ license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for quality scoring
 metadata:
   author: AgriciDaniel
-  version: "1.3.1"
+  version: "1.4.0"
 user-invokable: true
-argument-hint: "[write|rewrite|analyze|brief|calendar|strategy|outline|seo-check|schema|repurpose|geo|audit] [topic-or-file]"
+argument-hint: "[write|rewrite|analyze|brief|calendar|strategy|outline|seo-check|schema|repurpose|geo|image|audit] [topic-or-file]"
 allowed-tools:
   - Read
   - Write
@@ -55,6 +56,7 @@ Perplexity, Google AI Overviews, Gemini).
 | `/blog repurpose <file>` | Repurpose content for other platforms |
 | `/blog geo <file>` | AI citation readiness audit |
 | `/blog audit [directory]` | Full-site blog health assessment |
+| `/blog image [generate\|edit\|setup]` | AI image generation and editing via Gemini |
 | `/blog update <file>` | Update existing post with fresh stats (routes to rewrite) |
 
 ## Orchestration Logic
@@ -76,6 +78,7 @@ Perplexity, Google AI Overviews, Gemini).
    - `repurpose` → `blog-repurpose` (cross-platform content)
    - `geo` / `aeo` / `citation` → `blog-geo` (AI citation audit)
    - `audit` / `health` → `blog-audit` (site-wide assessment)
+   - `image` → `blog-image` (AI image generation and editing)
    - `update` → `blog-rewrite` (with freshness-update mode)
 
 ### Platform Detection
@@ -104,7 +107,7 @@ Every blog post targets these 6 optimization pillars:
 |--------|--------|---------------|
 | Answer-First Formatting | +340% AI citations | Every H2 opens with 40-60 word stat-rich paragraph |
 | Real Sourced Data | E-E-A-T trust | Tier 1-3 sources only, inline attribution |
-| Visual Media | Engagement + citations | Pixabay/Unsplash images + built-in SVG chart generation |
+| Visual Media | Engagement + citations | Pixabay/Unsplash images + AI generation via Gemini + built-in SVG charts |
 | FAQ Schema | +28% AI citations | Structured FAQ with 40-60 word answers |
 | Content Structure | AI extractability | 50-150 word chunks, question headings, proper H hierarchy |
 | Freshness Signals | 76% of top citations | Updated within 30 days, dateModified schema |
@@ -152,7 +155,7 @@ Load on-demand as needed (12 references):
 - `references/google-landscape-2026.md` -- December 2025 Core Update, E-E-A-T, algorithm changes
 - `references/geo-optimization.md` -- GEO/AEO techniques, AI citation factors
 - `references/content-rules.md` -- Structure, readability, answer-first formatting
-- `references/visual-media.md` -- Image sourcing (Pixabay, Unsplash, Pexels) + SVG chart integration
+- `references/visual-media.md` -- Image sourcing (Pixabay, Unsplash, Pexels), AI image generation, SVG chart integration
 - `references/quality-scoring.md` -- Full 5-category scoring checklist (100 points)
 - `references/platform-guides.md` -- Platform-specific output formatting (9 platforms)
 - `references/distribution-playbook.md` -- Content distribution strategy (Reddit, YouTube, LinkedIn, etc.)
@@ -200,6 +203,7 @@ Templates are in `templates/` and contain section structure, markers, and checkl
 | `blog-geo` | AI citation readiness audit with 0-100 GEO score |
 | `blog-audit` | Full-site blog health assessment with parallel subagents |
 | `blog-chart` | Generate inline SVG data visualization charts with dark-mode styling |
+| `blog-image` | AI image generation and editing for blog content via Gemini MCP |
 
 ## Agents
 
@@ -249,7 +253,11 @@ For `/blog audit`, step 6 runs in parallel across all posts in the directory.
 
 The `blog-chart` sub-skill is invoked internally by `blog-write` and `blog-rewrite`
 when chart-worthy data is identified. It is not a standalone slash command.
-Users do not need to call it directly.
+
+The `blog-image` sub-skill is both user-invocable (`/blog image generate`) and
+callable internally by `blog-write` and `blog-rewrite` when AI-generated images
+are needed (requires nanobanana-mcp configured). Falls back gracefully when MCP
+is not available.
 
 ## Integration
 

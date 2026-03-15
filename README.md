@@ -7,7 +7,7 @@
 ![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blueviolet)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
-![Sub-Skills](https://img.shields.io/badge/Sub--Skills-13-orange)
+![Sub-Skills](https://img.shields.io/badge/Sub--Skills-15-orange)
 
 claude-blog is a Claude Code skill ecosystem for creating, optimizing, and managing blog content at scale. It generates complete articles, briefs, calendars, and schemas — dual-optimized for Google rankings and AI citation platforms (ChatGPT, Perplexity, AI Overviews).
 
@@ -71,9 +71,10 @@ Restart Claude Code after installation to activate.
 | `/blog schema <file>` | Generate JSON-LD schema markup |
 | `/blog repurpose <file>` | Repurpose for social, email, YouTube |
 | `/blog geo <file>` | AI citation readiness audit |
+| `/blog image [generate\|edit\|setup]` | AI image generation via Gemini |
 | `/blog audit [directory]` | Full-site blog health assessment |
 
-> **13 sub-skills total**: 12 user-facing commands above + `blog-chart` (internal SVG generation, invoked automatically by other commands).
+> **15 sub-skills total**: 13 user-facing commands above + `blog-chart` (internal SVG generation) + `blog-image` (also callable internally by write/rewrite).
 
 ## Features
 
@@ -101,6 +102,7 @@ Every article targets both Google rankings and AI citation platforms:
 
 ### Visual Media
 - Pixabay/Unsplash/Pexels image sourcing with alt text
+- AI image generation via Gemini (hero images, inline illustrations, social cards) — optional, requires free Google AI API key
 - Built-in SVG chart generation (bar, grouped bar, lollipop, donut, line, area, radar)
 - Image density targets by content type
 - Image URL verification (HTTP 200 check before embedding)
@@ -131,7 +133,11 @@ claude-blog/
 │   ├── blog-repurpose/SKILL.md
 │   ├── blog-geo/SKILL.md
 │   ├── blog-audit/SKILL.md
-│   └── blog-chart/SKILL.md            # Internal: SVG chart generation
+│   ├── blog-chart/SKILL.md            # Internal: SVG chart generation
+│   └── blog-image/                    # AI image generation via Gemini
+│       ├── SKILL.md
+│       ├── references/                # 3 reference docs (models, tools, prompts)
+│       └── scripts/                   # MCP setup and validation scripts
 ├── agents/                             # 4 specialized agents
 │   ├── blog-researcher.md
 │   ├── blog-writer.md

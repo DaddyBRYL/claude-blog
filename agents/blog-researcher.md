@@ -67,6 +67,16 @@ After finding each candidate image URL:
 4. Mark each image as Verified (HTTP 200) or Unverified in your output table
 5. Never include more than 1 Unverified image in a research packet
 
+### When Stock Photos Are Insufficient
+
+If fewer than 3 suitable stock images are found, or the topic is too niche/abstract:
+
+1. Note in output: "AI image generation recommended for this topic"
+2. Suggest specific image concepts with domain mode hints:
+   - "Hero: Editorial mode — [description of ideal hero image]"
+   - "Section 3: Infographic mode — [description of data illustration]"
+3. Do NOT call MCP tools directly — the `blog-image` sub-skill handles generation
+
 ### When Analyzing Competition
 
 1. Search for the target keyword
@@ -105,6 +115,12 @@ Return structured findings:
 
 ### Recommended Chart Data
 [2-4 data sets suitable for visualization with chart type suggestions]
+
+### AI Image Recommendations (if stock insufficient)
+
+| # | Image Type | Domain Mode | Concept Description |
+|---|-----------|-------------|---------------------|
+| 1 | [hero/inline] | [Editorial/Product/etc.] | [description] |
 ```
 
 ## Cover Image Search

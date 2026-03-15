@@ -26,7 +26,7 @@ function Main {
     $subSkills = @(
         "blog-write", "blog-rewrite", "blog-analyze", "blog-brief",
         "blog-calendar", "blog-strategy", "blog-outline", "blog-seo-check",
-        "blog-schema", "blog-repurpose", "blog-geo", "blog-audit", "blog-chart"
+        "blog-schema", "blog-repurpose", "blog-geo", "blog-audit", "blog-chart", "blog-image"
     )
     foreach ($skill in $subSkills) {
         $skillPath = Join-Path $SkillDir $skill

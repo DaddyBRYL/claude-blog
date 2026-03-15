@@ -7,8 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-03-14
+
 ### Added
-- **plugin.json**: `skills` array declaring all 14 skills (marketplace readiness per Anthropic plugin spec); `blog-chart` marked `user-invocable: false`
+- **blog-image sub-skill**: AI image generation and editing for blog content via Gemini MCP (`@ycse/nanobanana-mcp`)
+  - 6-component Reasoning Brief system (Subject, Action, Context, Composition, Lighting, Style)
+  - 6 blog-optimized domain modes (Editorial, Product, Landscape, UI/Web, Infographic, Abstract)
+  - Commands: `/blog image generate`, `/blog image edit`, `/blog image setup`
+  - 3 reference files: gemini-models.md, mcp-tools.md, prompt-engineering-blog.md
+  - 2 setup scripts: setup_image_mcp.py, validate_image_setup.py
+- **MCP integration**: nanobanana-mcp server config in `.mcp.json` for Gemini image generation
+- **blog-write**: AI image generation as alternative/supplement to stock photos in Phase 2 Research
+- **blog-rewrite**: AI image generation for missing/insufficient images in Phase 2 and Phase 4g
+- **blog-researcher**: AI image recommendation output when stock photos are insufficient
+- **visual-media.md**: Option 3 — AI-Generated Cover documentation with domain mode guidance
+
+### Changed
+- Updated install scripts (install.sh, install.ps1) to handle blog-image references and scripts
+- Updated orchestrator routing table, Quick Reference, and Sub-Skills table for blog-image
+- Updated docs: COMMANDS.md, MCP-INTEGRATION.md, INSTALLATION.md with image generation docs
+- Updated README.md: commands table, architecture diagram, feature descriptions, badge count (13→15)
+- Sub-skill count: 14 → 15 (13 user-facing + 1 internal chart + 1 image generation)
+
+---
+
+## [1.3.1] - 2026-03-06
+
+### Added
+- **SKILL.md**: `license`, `compatibility`, and `metadata` fields per Agent Skills spec (agentskills.io)
+- **plugin.json**: `version`, `homepage`, `license` fields; `skills` array declaring all 14 skills (marketplace readiness); `blog-chart` marked `user-invocable: false`
+- GitHub issue template and PR template (community health files)
 
 ### Changed
 - **README.md**: Removed broken `/plugin install claude-blog@AgriciDaniel` (not yet registered in marketplace); corrected Python badge `3.12+` → `3.11+`; added inline note clarifying `blog-chart` is internal
@@ -17,26 +45,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **CLAUDE.md**: Corrected Python version reference `3.12+` → `3.11+`
 
 ### Fixed
-- **install.ps1**: Removed dead `$dirs` variable block (declared but never used; directories created by the `foreach` loop below it)
-- **skills/blog/SKILL.md**: Corrected `compatibility` field Python version `3.12+` → `3.11+`
-- **skills/blog/SKILL.md**: Corrected `user-invocable` → `user-invokable` (correct Agent Skills spec spelling)
+- **install.ps1**: Removed dead `$dirs` variable block (declared but never used); updated paths for `skills/blog/` restructure; added `blog` skip in sub-skill loop to prevent double-copy
+- **skills/blog/SKILL.md**: Corrected `compatibility` field Python version `3.12+` → `3.11+`; corrected `user-invocable` → `user-invokable` (correct Agent Skills spec spelling)
 - **skills/blog-chart/SKILL.md**: Added `user-invokable: false` to match plugin.json declaration; corrected attribute spelling
 
 ### Security
 - Deleted `firebase-debug.log` (gitignored debug artifact); deleted stale remote branch `claude/review-plugin-testing-practices-eVVOU`
-
----
-
-## [1.3.1] - 2026-03-06
-
-### Added
-- **SKILL.md**: `license`, `compatibility`, and `metadata` fields per Agent Skills spec (agentskills.io)
-- **plugin.json**: `version`, `homepage`, `license` fields
-- GitHub issue template and PR template (community health files)
-
-### Fixed
-- **install.ps1**: Updated paths for `skills/blog/` restructure (Windows installer was broken since v1.3.0)
-- **install.ps1**: Added `blog` skip in sub-skill loop to prevent double-copy
 
 ---
 

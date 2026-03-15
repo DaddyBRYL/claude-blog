@@ -1,6 +1,6 @@
 # Command Reference
 
-Complete reference for all 12 `/blog` slash commands. Every command is invoked
+Complete reference for all 13 `/blog` slash commands. Every command is invoked
 through the main orchestrator (`skills/blog/SKILL.md`), which routes to the appropriate
 sub-skill.
 
@@ -24,6 +24,7 @@ sub-skill.
 | `repurpose <file>` | blog-repurpose | Repurpose content for other platforms |
 | `geo <file>` | blog-geo | AI citation optimization audit |
 | `audit [directory]` | blog-audit | Full-site blog health assessment |
+| `image [generate\|edit\|setup]` | blog-image | AI image generation and editing via Gemini |
 | `update <file>` | blog-rewrite | Freshness update (alias for rewrite) |
 
 ---
@@ -542,6 +543,7 @@ User Input                        Routes To
 /blog repurpose <file>        --> blog-repurpose
 /blog geo <file>              --> blog-geo
 /blog audit [directory]       --> blog-audit
+/blog image [generate|edit]  --> blog-image
 /blog update <file>           --> blog-rewrite (freshness mode)
 ```
 

@@ -29,6 +29,17 @@ For branded or data-driven covers, generate via `blog-chart`:
 - Include blog name/author subtle branding
 - ViewBox: `0 0 1200 630` for OG compatibility
 
+### Option 3: AI-Generated Cover (via blog-image)
+
+For custom, topic-specific covers when stock photos don't match:
+1. Requires nanobanana-mcp configured (see `/blog image setup`)
+2. Uses 6-component Reasoning Brief for optimized Gemini prompts
+3. Supports 14 aspect ratios (16:9 for hero, 1.91:1 for OG)
+4. Up to 4K resolution via Gemini 3.1 Flash
+5. Post-processing: auto-resize to 1200x630, convert to WebP/AVIF
+
+Best for: Abstract topics, branded imagery, niche subjects with poor stock results.
+
 ### Frontmatter Fields
 
 ```yaml
@@ -54,6 +65,7 @@ date: "YYYY-MM-DD"
 | General topic | Photo cover from Pixabay/Unsplash/Pexels |
 | Data-heavy article | Generated SVG with key stat highlight |
 | Brand-focused | Generated SVG with brand colors |
+| Abstract/niche topic | AI-generated via `blog-image` (Gemini) |
 | Tutorial/how-to | Screenshot or relevant photo |
 
 ---

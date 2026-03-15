@@ -18,7 +18,7 @@ main() {
     fi
 
     # Remove sub-skills
-    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart; do
+    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart blog-image; do
         if [ -d "${SKILL_DIR}/${skill}" ]; then
             rm -rf "${SKILL_DIR}/${skill}"
             echo "  Removed: ${SKILL_DIR}/${skill}/"
