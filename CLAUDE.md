@@ -4,7 +4,7 @@
 
 This repository contains **Claude Blog**, a Tier 4 Claude Code skill for blog content
 creation, optimization, and management. It follows the Agent Skills open standard and the
-3-layer architecture (directive, orchestration, execution). 15 sub-skills, 4 specialized
+3-layer architecture (directive, orchestration, execution). 19 sub-skills, 4 specialized
 subagents, and 12 content templates are dual-optimized for Google rankings (December 2025
 Core Update, E-E-A-T) and AI citations (GEO/AEO).
 
@@ -13,10 +13,10 @@ Core Update, E-E-A-T) and AI citations (GEO/AEO).
 ```
 claude-blog/
   CLAUDE.md                          # Project instructions (this file)
-  .claude-plugin/plugin.json         # Plugin manifest (v1.4.0)
+  .claude-plugin/plugin.json         # Plugin manifest (v1.5.0)
   .mcp.json                          # MCP server configuration (nanobanana-mcp)
   pyproject.toml                     # Python packaging (3.11+)
-  skills/                            # 15 sub-skills (blog/ is the orchestrator)
+  skills/                            # 19 sub-skills (blog/ is the orchestrator)
     blog/SKILL.md                   # Main orchestrator, routing, scoring
       references/                   # 12 on-demand knowledge files
       templates/                    # 12 content templates
@@ -38,6 +38,10 @@ claude-blog/
       SKILL.md                    # Image generation sub-skill
       references/                 # 3 reference docs (models, tools, prompts)
       scripts/                    # MCP setup and validation scripts
+    blog-cannibalization/SKILL.md # Keyword overlap detection
+    blog-factcheck/SKILL.md       # Statistics verification
+    blog-persona/SKILL.md         # Writing persona management
+    blog-taxonomy/SKILL.md        # CMS taxonomy management
   agents/                            # 4 specialized subagents
     blog-researcher.md              # Statistics and source research
     blog-writer.md                  # Content generation
@@ -64,6 +68,10 @@ claude-blog/
 | `/blog geo` | AI citation optimization audit |
 | `/blog image` | AI image generation and editing via Gemini |
 | `/blog audit` | Full-site blog health assessment |
+| `/blog cannibalization` | Detect keyword overlap across posts |
+| `/blog factcheck` | Verify statistics against cited sources |
+| `/blog persona` | Manage writing personas and voice profiles |
+| `/blog taxonomy` | Tag/category CMS management |
 
 ## Development Rules
 

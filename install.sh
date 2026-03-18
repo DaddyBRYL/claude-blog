@@ -45,7 +45,7 @@ main() {
     mkdir -p "${SKILL_DIR}/blog/references"
     mkdir -p "${SKILL_DIR}/blog/templates"
     mkdir -p "${SKILL_DIR}/blog/scripts"
-    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart blog-image; do
+    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart blog-image blog-cannibalization blog-factcheck blog-persona blog-taxonomy; do
         mkdir -p "${SKILL_DIR}/${skill}"
     done
     mkdir -p "${AGENT_DIR}"
@@ -88,6 +88,9 @@ main() {
         chmod +x "${SKILL_DIR}/blog-image/scripts/"*.py 2>/dev/null || true
     fi
 
+    # Create personas directory for blog-persona
+    mkdir -p "${SKILL_DIR}/blog/references/personas"
+
     # Copy agents
     echo "→ Installing agents..."
     for agent_file in "${SCRIPT_DIR}/agents/"*.md; do
@@ -118,7 +121,7 @@ main() {
     echo ""
     echo "  Installed:"
     echo "    Main skill:   blog/ (orchestrator + references + templates)"
-    echo "    Sub-skills:   15 (13 commands + 1 internal + 1 image generation)"
+    echo "    Sub-skills:   19 (17 commands + 1 internal + 1 image generation)"
     echo "    Agents:       4 specialists"
     echo "    Scripts:      analyze_blog.py"
     echo ""
@@ -136,6 +139,10 @@ main() {
     echo "    /blog geo <file>           AI citation optimization audit"
     echo "    /blog image <idea>         AI image generation via Gemini"
     echo "    /blog audit [directory]    Full-site blog health assessment"
+    echo "    /blog cannibalization      Detect keyword overlap across posts"
+    echo "    /blog factcheck            Verify statistics against sources"
+    echo "    /blog persona              Manage writing personas"
+    echo "    /blog taxonomy             Tag/category CMS management"
     echo ""
     echo "  Optional: AI Image Generation"
     echo "    /blog image setup             Configure Gemini image generation"

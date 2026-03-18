@@ -7,7 +7,7 @@
 ![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blueviolet)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
-![Sub-Skills](https://img.shields.io/badge/Sub--Skills-15-orange)
+![Sub-Skills](https://img.shields.io/badge/Sub--Skills-19-orange)
 
 claude-blog is a Claude Code skill ecosystem for creating, optimizing, and managing blog content at scale. It generates complete articles, briefs, calendars, and schemas, dual-optimized for Google rankings and AI citation platforms (ChatGPT, Perplexity, AI Overviews).
 
@@ -73,8 +73,12 @@ Restart Claude Code after installation to activate.
 | `/blog geo <file>` | AI citation readiness audit |
 | `/blog image [generate\|edit\|setup]` | AI image generation via Gemini |
 | `/blog audit [directory]` | Full-site blog health assessment |
+| `/blog cannibalization [directory]` | Detect keyword overlap across posts |
+| `/blog factcheck <file>` | Verify statistics against cited sources |
+| `/blog persona [create\|list\|apply]` | Manage writing personas and voice profiles |
+| `/blog taxonomy [sync\|audit\|suggest]` | Tag/category CMS management |
 
-> **15 sub-skills total**: 13 user-facing commands above + `blog-chart` (internal SVG generation) + `blog-image` (also callable internally by write/rewrite).
+> **19 sub-skills total**: 17 user-facing commands above + `blog-chart` (internal SVG generation) + `blog-image` (also callable internally by write/rewrite).
 
 ## Features
 
@@ -94,6 +98,18 @@ Scoring bands: Exceptional (90-100), Strong (80-89), Acceptable (70-79), Below S
 
 ### AI Content Detection
 Burstiness scoring, known AI phrase detection (17 phrases), vocabulary diversity analysis (TTR). Flags content that reads as AI-generated.
+
+### Persona-Driven Writing
+Configurable writing personas with NNGroup 4-dimension tone framework. Manage voice profiles per blog or author, with readability bands (Consumer/Professional/Technical) and style enforcement.
+
+### Fact-Checking Pipeline
+Statistics verification that fetches cited source URLs and scores claim confidence (exact match, paraphrase, not found). Ensures every data point in your content is accurate and traceable.
+
+### Keyword Cannibalization Detection
+Identifies keyword overlap across blog posts using local grep analysis or DataForSEO API. Severity scoring with merge/differentiate recommendations to prevent posts from competing against each other.
+
+### CMS Taxonomy Management
+Tag and category management supporting WordPress REST, Shopify GraphQL, Ghost, Strapi, and Sanity. Includes tag suggestion, sync, and audit workflows.
 
 ### Dual Optimization
 Every article targets both Google rankings and AI citation platforms:
@@ -134,10 +150,14 @@ claude-blog/
 │   ├── blog-geo/SKILL.md
 │   ├── blog-audit/SKILL.md
 │   ├── blog-chart/SKILL.md            # Internal: SVG chart generation
-│   └── blog-image/                    # AI image generation via Gemini
-│       ├── SKILL.md
-│       ├── references/                # 3 reference docs (models, tools, prompts)
-│       └── scripts/                   # MCP setup and validation scripts
+│   ├── blog-image/                    # AI image generation via Gemini
+│   │   ├── SKILL.md
+│   │   ├── references/                # 3 reference docs (models, tools, prompts)
+│   │   └── scripts/                   # MCP setup and validation scripts
+│   ├── blog-cannibalization/SKILL.md  # Keyword overlap detection
+│   ├── blog-factcheck/SKILL.md        # Statistics verification
+│   ├── blog-persona/SKILL.md          # Writing persona management
+│   └── blog-taxonomy/SKILL.md         # CMS taxonomy management
 ├── agents/                             # 4 specialized agents
 │   ├── blog-researcher.md
 │   ├── blog-writer.md

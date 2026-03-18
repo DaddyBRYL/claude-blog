@@ -17,6 +17,7 @@
 | **Rate Limits (Free)** | ~5-15 RPM / ~20-500 RPD (preview model - more restrictive than stable) |
 | **Output Tokens** | ~1,290 output tokens per image |
 | **Cost (1K)** | ~$0.067/image |
+| **Arena Rank** | #1 on Artificial Analysis Image Arena |
 | **Best For** | Most blog images, rapid iteration, batch generation |
 
 ### gemini-3-pro-image-preview (Highest Quality - Text + Detail)
@@ -47,6 +48,15 @@
 | **Cost (1K)** | ~$0.039/image |
 | **Best For** | Budget-conscious workflows, proven quality, stable fallback |
 
+### Imagen 4 (Dedicated Image Models)
+| Property | Fast | Standard | Ultra |
+|----------|------|----------|-------|
+| **Pricing** | $0.02/image | $0.04/image | $0.06/image |
+| **Speed** | Fastest | Medium | Slowest |
+| **Best For** | Batch generation, drafts | General-purpose blog images | Maximum detail, print |
+
+**Notes:** Imagen 4 models are dedicated image generators (not multimodal LLMs). They lack conversational editing but offer lower per-image cost for high-volume workflows.
+
 ## Deprecated Models (DO NOT USE)
 
 ### gemini-2.5-flash-image-preview
@@ -54,6 +64,9 @@
 
 ### gemini-2.0-flash-exp
 - **Status:** Deprecated, shutdown June 1, 2026. Use `gemini-2.5-flash-image`
+
+### Legacy models (Gemini 2.0 Flash and earlier)
+- **Status:** All retiring June 1, 2026. Migrate to NB2 Flash or Imagen 4.
 
 ## Model Selection for Blog Content
 
@@ -122,6 +135,9 @@ Google cut free-tier limits by ~92% in December 2025. Current structure:
 | Pro | 1K | ~$0.134 | 2× Flash |
 | Pro | 4K | ~$0.536 | Premium quality |
 | Original (2.5) | 1K | ~$0.039 | Budget option |
+| Imagen 4 Fast | - | $0.02 | Cheapest dedicated image model |
+| Imagen 4 Standard | - | $0.04 | Mid-range dedicated |
+| Imagen 4 Ultra | - | $0.06 | Highest quality dedicated |
 | Batch API | Any | 50% discount | Asynchronous, higher latency |
 
 **Cost optimization:** Use 512px for drafts (cheapest), 1K for standard blog images, reserve 2K-4K for hero images and final assets.
@@ -163,6 +179,18 @@ Server-side analysis of the **generated image itself**. Cannot be disabled throu
 
 - **SynthID watermarks** are always embedded (invisible, machine-readable). Survives rescaling, compression, and most edits - cannot be disabled
 - **C2PA Content Credentials** are embedded on Nano Banana Pro images from Gemini App, Vertex AI, and Google Ads
+
+## Blog Image Post-Processing
+
+| Step | Target | Tool |
+|------|--------|------|
+| Generate | 2K resolution | Gemini API |
+| Convert | WebP (25-30% smaller than JPEG, 97% browser support) | ImageMagick or Sharp |
+| Fallback | AVIF (50% smaller than WebP, 90% support) with JPEG fallback | ImageMagick |
+| Hero size | 1920x1080 (16:9) or 1200x630 (OG) | Resize |
+| Inline size | < 200KB compressed | Quality adjustment |
+| Hero size | < 500KB compressed | Quality adjustment |
+| Metadata | Strip EXIF, keep SynthID + C2PA | ImageMagick -strip |
 
 ## Key Limitations
 - No native transparent backgrounds (workaround: prompt green background, then chromakey removal)

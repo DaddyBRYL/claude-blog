@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-03-18
+
+### Added
+- **blog-persona sub-skill**: Writing persona management with NNGroup 4-dimension tone framework, configurable readability bands (Consumer/Professional/Technical), and style enforcement
+- **blog-cannibalization sub-skill**: Keyword overlap detection across blog posts with local-only (grep) and DataForSEO API modes, severity scoring, and merge/differentiate recommendations
+- **blog-factcheck sub-skill**: Statistics verification pipeline that fetches cited source URLs and scores claim confidence (exact match, paraphrase, not found)
+- **blog-taxonomy sub-skill**: CMS taxonomy management supporting WordPress REST, Shopify GraphQL, Ghost, Strapi, and Sanity. Tag suggestion, sync, and audit workflows
+- **CTA placement reference**: Content-type-specific CTA positioning rules with HubSpot statistics (202% better contextual CTAs, 266% more conversions with single CTA)
+- **Visual rhythm enforcement**: Mandatory visual element (image/chart/callout) every 300-500 words in blog-write and blog-writer agent
+- **Link deduplication check**: Step 5.5 in blog-seo-check flags duplicate URLs in body content
+- **Creative Director prompting**: 4-dimension professional image prompting (Lighting, Camera, Film Stock, Material) in blog-image prompt engineering reference
+
+### Changed
+- **TL;DR replaced with Key Takeaways**: Default summary box label changed to "Key Takeaways" with 3-5 bullet format. Configurable per persona. Backward compatible (accepts TL;DR, Key Takeaways, The Bottom Line, What You'll Learn, At a Glance, In Brief)
+- **Readability bands by audience**: Consumer (Grade 6-8), Professional (Grade 8-10), Technical (Grade 10-12) with default at Grade 7-8
+- **analyze_blog.py**: Updated summary box detection to recognize all 6 label variants
+- **blog-image models**: Added Imagen 4 pricing, legacy model deprecation note (June 1, 2026), blog image post-processing pipeline spec
+- Updated install scripts to handle 4 new sub-skills and personas directory
+- Updated orchestrator routing table, Quick Reference, and Sub-Skills table (19 sub-skills, 17 commands)
+
 ## [1.4.0] - 2026-03-14
 
 ### Added

@@ -1,7 +1,7 @@
 {
   "name": "claude-blog",
-  "description": "AI-powered blog creation and optimization skill with 13 commands, 5-category 100-point scoring, 4 specialized agents, and AI image generation via Gemini. Optimized for Google rankings (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO). Writes, rewrites, analyzes, outlines, audits, generates images, and repurposes blog content.",
-  "version": "1.4.0",
+  "description": "AI-powered blog skill with 17 commands, persona-driven writing, fact-checking, cannibalization detection, CMS taxonomy sync, 5-category scoring, 4 agents, and Gemini image generation. Optimized for Google rankings and AI citations (GEO/AEO).",
+  "version": "1.5.0",
   "author": {
     "name": "AgriciDaniel"
   },
@@ -21,7 +21,11 @@
     {"name": "blog-repurpose", "path": "skills/blog-repurpose"},
     {"name": "blog-geo",       "path": "skills/blog-geo"},
     {"name": "blog-audit",     "path": "skills/blog-audit"},
+    {"name": "blog-cannibalization", "path": "skills/blog-cannibalization"},
     {"name": "blog-chart",     "path": "skills/blog-chart", "user-invocable": false},
-    {"name": "blog-image",     "path": "skills/blog-image"}
+    {"name": "blog-factcheck", "path": "skills/blog-factcheck"},
+    {"name": "blog-image",     "path": "skills/blog-image"},
+    {"name": "blog-persona",   "path": "skills/blog-persona"},
+    {"name": "blog-taxonomy",  "path": "skills/blog-taxonomy"}
   ]
 }

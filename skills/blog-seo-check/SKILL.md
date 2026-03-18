@@ -83,6 +83,25 @@ the page and extract the relevant elements.
 Use Grep and Glob to scan the project for existing blog content and verify
 bidirectional linking where possible.
 
+### Step 5.5: Link Deduplication
+
+| Check | Pass Criteria |
+|-------|---------------|
+| No duplicate URLs | Each URL appears at most once in body content |
+| Best instance kept | If duplicates exist, keep the one with most descriptive anchor text |
+| Navigation exempt | Header/footer nav links don't count toward body dedup |
+| Fragment normalization | URLs with different #fragments treated as same URL |
+
+For each duplicate found:
+1. Normalize URLs (strip trailing slashes, query parameters, fragments)
+2. Score each instance by anchor text descriptiveness (keyword-rich > generic)
+3. Recommend keeping the highest-scored instance, removing others
+4. Deduct 1 point per duplicate from SEO Optimization score
+
+Google records 1-2 anchor texts per URL per page (Zyppy 2023). Optimal: link to
+same URL once in body content; 5-10 internal links per 2,000 words; max ~50 total
+links per page.
+
 ### Step 6: External Links
 
 | Check | Pass Criteria |

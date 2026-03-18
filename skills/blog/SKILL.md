@@ -1,7 +1,7 @@
 ---
 name: blog
 description: >
-  Full-lifecycle blog engine with 12 commands, 12 content templates, 5-category
+  Full-lifecycle blog engine with 17 commands, 12 content templates, 5-category
   100-point scoring, and 4 specialized agents. Optimized for Google rankings
   (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO). Writes,
   rewrites, analyzes, outlines, audits, and repurposes blog content with
@@ -18,9 +18,9 @@ license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for quality scoring
 metadata:
   author: AgriciDaniel
-  version: "1.4.0"
+  version: "1.5.0"
 user-invokable: true
-argument-hint: "[write|rewrite|analyze|brief|calendar|strategy|outline|seo-check|schema|repurpose|geo|image|audit] [topic-or-file]"
+argument-hint: "[write|rewrite|analyze|brief|calendar|cannibalization|strategy|outline|seo-check|schema|repurpose|geo|image|audit|factcheck|persona|taxonomy] [topic-or-file]"
 allowed-tools:
   - Read
   - Write
@@ -56,7 +56,11 @@ Perplexity, Google AI Overviews, Gemini).
 | `/blog repurpose <file>` | Repurpose content for other platforms |
 | `/blog geo <file>` | AI citation readiness audit |
 | `/blog audit [directory]` | Full-site blog health assessment |
+| `/blog cannibalization [dir]` | Detect keyword cannibalization across posts |
+| `/blog factcheck <file>` | Verify statistics against cited sources |
 | `/blog image [generate\|edit\|setup]` | AI image generation and editing via Gemini |
+| `/blog persona [create\|list\|use\|show]` | Manage writing personas and voice profiles |
+| `/blog taxonomy [suggest\|sync\|audit]` | Tag/category management across CMS platforms |
 | `/blog update <file>` | Update existing post with fresh stats (routes to rewrite) |
 
 ## Orchestration Logic
@@ -71,11 +75,15 @@ Perplexity, Google AI Overviews, Gemini).
    - `analyze` → `blog-analyze` (quality scoring)
    - `brief` → `blog-brief` (content briefs)
    - `calendar` / `plan` → `blog-calendar` (editorial calendars)
+   - `cannibalization` → `blog-cannibalization` (keyword overlap detection)
+   - `factcheck` → `blog-factcheck` (statistics and source verification)
    - `strategy` / `ideation` → `blog-strategy` (positioning and topics)
    - `outline` → `blog-outline` (SERP-informed outlines)
+   - `persona` → `blog-persona` (writing voice and style management)
    - `seo-check` / `seo` → `blog-seo-check` (SEO validation)
    - `schema` → `blog-schema` (JSON-LD generation)
    - `repurpose` → `blog-repurpose` (cross-platform content)
+   - `taxonomy` → `blog-taxonomy` (tags, categories, CMS sync)
    - `geo` / `aeo` / `citation` → `blog-geo` (AI citation audit)
    - `audit` / `health` → `blog-audit` (site-wide assessment)
    - `image` → `blog-image` (AI image generation and editing)
@@ -202,8 +210,12 @@ Templates are in `templates/` and contain section structure, markers, and checkl
 | `blog-repurpose` | Cross-platform repurposing (social, email, YouTube, Reddit) |
 | `blog-geo` | AI citation readiness audit with 0-100 GEO score |
 | `blog-audit` | Full-site blog health assessment with parallel subagents |
+| `blog-cannibalization` | Keyword overlap detection with severity scoring |
 | `blog-chart` | Generate inline SVG data visualization charts with dark-mode styling |
+| `blog-factcheck` | Statistics verification against cited sources |
 | `blog-image` | AI image generation and editing for blog content via Gemini MCP |
+| `blog-persona` | Writing persona management with NNGroup framework |
+| `blog-taxonomy` | CMS taxonomy management (WordPress, Shopify, Ghost, Strapi, Sanity) |
 
 ## Agents
 

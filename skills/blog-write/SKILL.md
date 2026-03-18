@@ -117,7 +117,11 @@ adapt this skeleton to match the template's section structure:
 - Problem/opportunity statement
 - What the reader will learn
 
-> **TL;DR:** [40-60 word standalone summary - placeholder]
+> **Key Takeaways**
+> - [Core finding with statistic and source]
+> - [Second key insight or recommendation]
+> - [Third actionable takeaway]
+> (3-5 bullets, 40-60 words combined)
 
 ## H2: [Question Format] (300-400 words)
 - Answer-first paragraph (40-60 words with stat + source)
@@ -151,6 +155,12 @@ adapt this skeleton to match the template's section structure:
 - Answer-first paragraph
 - Forward-looking analysis
 
+## [CTA Section or Inline Placement]
+- See `references/cta-placement.md` for placement rules by content type
+- Place CTA after value delivery, not at arbitrary positions
+- Single focused CTA per post (266% more conversions)
+- [CTA: contextual call-to-action matching article topic]
+
 ## FAQ Section (3-5 questions, 40-60 words each answer)
 - [INTERNAL-LINK: anchor text → detailed content]
 
@@ -161,6 +171,11 @@ adapt this skeleton to match the template's section structure:
 ```
 
 Present the outline to the user for approval before writing.
+
+**Visual element pacing**: Insert `[IMAGE]`, `[CHART]`, or `[CALLOUT]` markers
+every 300-500 words. Alternate types (no consecutive same-type). See
+`references/content-rules.md` Visual Rhythm section and
+`references/cta-placement.md` for CTA positioning.
 
 ### Phase 4: Chart Generation (Built-In)
 

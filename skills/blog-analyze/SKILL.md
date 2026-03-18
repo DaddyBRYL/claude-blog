@@ -63,9 +63,21 @@ Load `references/quality-scoring.md` for the full checklist. Score each:
 |-------|--------|---------------|
 | Depth/comprehensiveness | 7 | Covers topic thoroughly, no major gaps |
 | Readability (Flesch 60-70) | 7 | Flesch 60-70 ideal, 55-75 acceptable; Grade 7-8; Gunning Fog 7-8 |
+
+**Readability Bands** (apply per persona, or use default):
+| Audience | Flesch Grade | Flesch Ease | Scoring Impact |
+|----------|-------------|-------------|----------------|
+| Consumer | 6-8 | 60-80 | Full points if in range |
+| Professional | 8-10 | 50-60 | Full points if in range |
+| Technical | 10-12 | 30-50 | Full points if in range |
+| Default (no persona) | 7-8 | 60-70 | Current scoring unchanged |
+
+Content clarity is the #2 factor for AI citation probability (+32.83%
+score differential). Average US adult reads at 7th-8th grade level.
+
 | Originality/unique value markers | 5 | Original data, case studies, first-hand experience |
 | Sentence & paragraph structure | 4 | Avg sentence 15-20 words, ≤25% over 20; paragraphs 40-80 words; H2 every 200-300 words |
-| Engagement elements | 4 | TL;DR box, callouts, varied content blocks |
+| Engagement elements | 4 | Summary box, callouts, varied content blocks. Summary box accepts any of these labels: "TL;DR", "Key Takeaways", "The Bottom Line", "What You'll Learn", "At a Glance", "In Brief" |
 | Grammar/anti-pattern | 3 | Passive voice ≤10%, AI trigger words ≤5/1K, transition words 20-30%, clean prose |
 
 #### SEO Optimization (25 points)

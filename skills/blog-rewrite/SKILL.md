@@ -206,15 +206,22 @@ Apply these transformations to reduce AI-detectable writing patterns:
   experience: "in our experience", "we've found that", "from what we've seen",
   "this tends to", "it depends on".
 
-#### 4l. TL;DR Box
-If the post lacks a TL;DR box, add one immediately after the introduction:
+#### 4l. Summary Box (Key Takeaways)
+If the post lacks a summary box, add one immediately after the introduction:
 ```markdown
-> **TL;DR:** [40-60 word standalone summary. Contains the key finding or
-> recommendation plus 1 statistic with source. Self-contained - reader gets
-> the core value without reading the full article.]
+> **Key Takeaways**
+> - [Core finding with statistic and source]
+> - [Second key insight or recommendation]
+> - [Third actionable takeaway]
+> (3-5 bullets, 40-60 words combined. Self-contained - reader gets
+> the core value without reading the full article.)
 ```
-If a TL;DR already exists, verify it meets the 40-60 word requirement and
-contains a statistic with source attribution.
+Default label is "Key Takeaways", but this is configurable per persona or
+brand voice (e.g., "The Bottom Line", "Quick Summary", "What You Need to Know").
+
+If an existing TL;DR box is present, convert it to the bullet-point Key
+Takeaways format. Verify it meets the 40-60 word requirement and contains
+at least one statistic with source attribution.
 
 #### 4m. Information Gain Marker Injection
 Review the post for original value and tag it:

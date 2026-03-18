@@ -1,6 +1,6 @@
 # Command Reference
 
-Complete reference for all 13 `/blog` slash commands. Every command is invoked
+Complete reference for all 17 `/blog` slash commands. Every command is invoked
 through the main orchestrator (`skills/blog/SKILL.md`), which routes to the appropriate
 sub-skill.
 
@@ -25,6 +25,10 @@ sub-skill.
 | `geo <file>` | blog-geo | AI citation optimization audit |
 | `audit [directory]` | blog-audit | Full-site blog health assessment |
 | `image [generate\|edit\|setup]` | blog-image | AI image generation and editing via Gemini |
+| `cannibalization [directory]` | blog-cannibalization | Detect keyword overlap across posts |
+| `factcheck <file>` | blog-factcheck | Verify statistics against cited sources |
+| `persona [create\|list\|apply]` | blog-persona | Manage writing personas and voice profiles |
+| `taxonomy [sync\|audit\|suggest]` | blog-taxonomy | Tag/category CMS management |
 | `update <file>` | blog-rewrite | Freshness update (alias for rewrite) |
 
 ---

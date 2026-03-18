@@ -43,21 +43,31 @@ Example: "Definitive Guide to GEO: 7 Strategies That Drive AI Citations in 2026"
 
 Avoid: clickbait, ALL CAPS words, excessive punctuation, vague promises.
 
-## TL;DR Box Requirement
+## Summary Box Requirement
 
-Every post must open with a TL;DR summary box immediately after the title/intro:
+Every post must open with a summary box immediately after the title/intro:
 
-- **Length**: 40-60 words (standalone summary)
+- **Length**: 40-60 words total across all bullet points (standalone summary)
 - **Purpose**: AI extraction target - LLMs frequently cite these verbatim
-- **Content**: 2-3 sentences covering the core finding/argument with one key statistic
+- **Content**: 3-5 bullet points covering core findings with one key statistic
 - **Format**: Visually distinct block (callout, bordered box, or blockquote)
 - **Rule**: Must be comprehensible without reading the rest of the article
 
 ### Pattern
+The default label is **Key Takeaways** (professional, universally understood).
+Alternative labels configurable per persona: "The Bottom Line" (business/finance),
+"What You'll Learn" (educational/tutorial), "At a Glance" (scan-optimized),
+"In Brief" (journalistic).
+
+Format: 3-5 bullet points (not a prose paragraph):
 ```markdown
-> **TL;DR**: [Core finding with statistic] ([Source], year). [1-2 sentences
-> explaining the main takeaway and what the reader should do about it.]
+> **Key Takeaways**
+> - [Core finding with statistic] ([Source], year)
+> - [Second key insight or recommendation]
+> - [Third actionable takeaway]
 ```
+
+For backward compatibility, blog-analyze accepts both "TL;DR" and "Key Takeaways".
 
 ## Heading Hierarchy
 
@@ -136,6 +146,18 @@ AI systems prefer content that is fluent, specific, and well-structured.
 Readability alone doesn't determine AI citation - content must also demonstrate
 expertise and provide unique value.
 
+### Readability Bands by Audience
+| Audience | Flesch Grade | Flesch Ease | Max Sentence | Use When |
+|----------|-------------|-------------|--------------|----------|
+| Consumer | 6-8 | 60-80 | 20 words | General audience, lifestyle, health |
+| Professional (B2B) | 8-10 | 50-60 | 25 words | Business, marketing, finance |
+| Technical/Developer | 10-12 | 30-50 | 30 words | Engineering, API docs, data science |
+
+Default target (no persona active): Grade 7-8, Flesch Ease 60-70.
+When a persona is active, use the persona's readability band instead.
+Content clarity is the #2 factor for AI citation probability (+32.83%
+score differential, ZipTie.dev). Average US adult reads at 7th-8th grade level.
+
 ## Visual Content Rules
 
 | Parameter | Target | Minimum | Source |
@@ -153,6 +175,16 @@ every piece of information.
 Content with visuals gets 94% more views and 150% more social engagement.
 NNGroup: visitors read only ~20% of words on a page - visuals anchor scanning
 patterns and guide the eye to key information.
+
+### Visual Rhythm (Mandatory Pacing)
+Insert a visual element (image, chart, or callout) every 300-500 words.
+- Minimum: 1 visual per 500 words; optimal: 1 per 300-350 words
+- Alternate visual types: image -> chart -> callout -> image (no consecutive same-type)
+- Hero image: above the fold, 1920x1080 (16:9) or 1200x630 (OG-compatible)
+- All images: explicit width/height attributes for CLS prevention (score <= 0.1)
+- Below-fold images: loading="lazy"; hero image: fetchpriority="high"
+- Posts with 10+ visuals are 2x more likely to report strong results (Orbit Media)
+- 79% of people scan content rather than reading it (NNGroup)
 
 ## Anti-Pattern Detection
 

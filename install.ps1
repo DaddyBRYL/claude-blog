@@ -40,7 +40,7 @@ function Main {
     New-Item -ItemType Directory -Force -Path (Join-Path $SkillDir "blog" "scripts") | Out-Null
     New-Item -ItemType Directory -Force -Path $AgentDir | Out-Null
 
-    foreach ($skill in @("blog-write", "blog-rewrite", "blog-analyze", "blog-brief", "blog-calendar", "blog-strategy", "blog-outline", "blog-seo-check", "blog-schema", "blog-repurpose", "blog-geo", "blog-audit", "blog-chart", "blog-image")) {
+    foreach ($skill in @("blog-write", "blog-rewrite", "blog-analyze", "blog-brief", "blog-calendar", "blog-strategy", "blog-outline", "blog-seo-check", "blog-schema", "blog-repurpose", "blog-geo", "blog-audit", "blog-chart", "blog-image", "blog-cannibalization", "blog-factcheck", "blog-persona", "blog-taxonomy")) {
         New-Item -ItemType Directory -Force -Path (Join-Path $SkillDir $skill) | Out-Null
     }
 
@@ -85,6 +85,9 @@ function Main {
         Copy-Item (Join-Path $imgScriptSrc "*.py") $imgScriptDst -Force
     }
 
+    # Create personas directory for blog-persona
+    New-Item -ItemType Directory -Force -Path (Join-Path $SkillDir "blog" "references" "personas") | Out-Null
+
     # Copy agents
     Write-Color White "Installing agents..."
     Get-ChildItem -File (Join-Path $ScriptDir "agents" "*.md") | ForEach-Object {
@@ -124,7 +127,7 @@ function Main {
 
     Write-Color White "Installed:"
     Write-Color Green "  Main skill:   blog/ (orchestrator + 12 references + 12 templates)"
-    Write-Color Green "  Sub-skills:   15 (13 commands + 1 internal + 1 image generation)"
+    Write-Color Green "  Sub-skills:   19 (17 commands + 1 internal + 1 image generation)"
     Write-Color Green "  Agents:       4 specialists"
     Write-Color Green "  Scripts:      analyze_blog.py"
     Write-Color White ""
@@ -142,6 +145,10 @@ function Main {
     Write-Color Cyan  "  /blog geo <file>           AI citation optimization audit"
     Write-Color Cyan  "  /blog image <idea>         AI image generation via Gemini"
     Write-Color Cyan  "  /blog audit [directory]    Full-site blog health assessment"
+    Write-Color Cyan  "  /blog cannibalization      Detect keyword overlap across posts"
+    Write-Color Cyan  "  /blog factcheck            Verify statistics against sources"
+    Write-Color Cyan  "  /blog persona              Manage writing personas"
+    Write-Color Cyan  "  /blog taxonomy             Tag/category CMS management"
     Write-Color White ""
     Write-Color White "Optional: AI Image Generation"
     Write-Color Cyan  "  /blog image setup             Configure Gemini image generation"

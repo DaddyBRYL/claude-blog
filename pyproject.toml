@@ -1,6 +1,6 @@
 [project]
 name = "claude-blog"
-version = "1.4.0"
+version = "1.5.0"
 description = "AI-powered blog creation and optimization skill for Claude Code"
 readme = "README.md"
 license = {text = "MIT"}

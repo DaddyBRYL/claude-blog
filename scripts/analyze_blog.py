@@ -792,7 +792,9 @@ def analyze_ai_citation_readiness(content: str, headings_info: dict[str, Any],
     entity_definitions = len(re.findall(r'\*\*[^*]+\*\*\s*(?:is|are|refers to|means)', content))
 
     # Extraction-friendly structures
-    has_tldr = bool(re.search(r'(?i)(?:TL;?DR|key takeaway|summary|at a glance)', content))
+    has_tldr = bool(re.search(
+        r'(?i)(?:TL;?DR|key takeaway|the bottom line|what you.ll learn|at a glance|in brief)',
+        content))
     table_count = len(re.findall(r'^\|.+\|$', content, re.MULTILINE))
     list_count = len(re.findall(r'^[\s]*[-*+]\s', content, re.MULTILINE))
 
@@ -923,9 +925,12 @@ def calculate_score(analysis: dict[str, Any]) -> dict[str, Any]:
     cq += depth_score
     cq_breakdown['depth'] = depth_score
 
-    # Readability (Flesch 60-70 ideal): 7 pts
+    # Readability: 7 pts
+    # Default band: Flesch Ease 60-70 (Grade 7-8)
+    # Persona bands: Consumer 60-80, Professional 50-60, Technical 30-50
     readability = analysis['readability']
     fre = readability.get('flesch_reading_ease', 50)
+    fkg = readability.get('flesch_kincaid_grade', 8)
     if 60 <= fre <= 70:
         read_score = 7
     elif 55 <= fre <= 75:

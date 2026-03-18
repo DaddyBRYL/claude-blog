@@ -186,6 +186,34 @@ Gemini does NOT support negative prompts. Rephrase exclusions:
 - Instead of "no people" → "empty, deserted, uninhabited"
 - Instead of "no text" → "clean, uncluttered, text-free"
 
+## Creative Director Prompting (Advanced)
+
+For premium blog hero images, specify all 4 professional dimensions:
+
+### 1. Lighting Direction
+- Studio: softbox at 45 degrees, rim light for separation
+- Dramatic: single hard light with deep shadows
+- Natural: golden hour, overcast diffusion, window light
+- Flat: even illumination for product/editorial clarity
+
+### 2. Camera & Lens Control
+- Specify hardware: "shot on Sony A7IV with 85mm f/1.4"
+- Focal length affects perspective: 24mm (wide, dramatic) vs 85mm (compressed, flattering)
+- Depth of field: f/1.4 (dreamy bokeh) vs f/8 (sharp throughout)
+- Distance: close-up (texture detail) vs establishing (context)
+
+### 3. Film Stock & Color Grading
+- Nostalgic: Kodak Portra 400 (warm skin tones, soft pastels)
+- Modern: Fuji Pro 400H (cooler tones, clean shadows)
+- Cinematic: teal-and-orange grading, crushed blacks
+- Clean: neutral white balance, minimal grading
+
+### 4. Material & Texture Definition
+- Specify surfaces: "brushed aluminum", "rough linen", "polished marble"
+- Fabric: "crisp cotton", "worn denim", "sheer silk"
+- Environmental: "morning dew on glass", "rain-streaked concrete"
+- Detail level influences realism and visual interest
+
 ## Common Prompt Mistakes
 
 1. **Keyword stuffing** - "8K, masterpiece, best quality" adds nothing to Gemini
