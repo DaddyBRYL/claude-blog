@@ -1,7 +1,7 @@
 {
   "name": "claude-blog",
-  "description": "AI-powered blog skill with 17 commands, persona-driven writing, fact-checking, cannibalization detection, CMS taxonomy sync, 5-category scoring, 4 agents, and Gemini image generation. Optimized for Google rankings and AI citations (GEO/AEO).",
-  "version": "1.5.0",
+  "description": "AI-powered blog skill with 20 commands, persona-driven writing, fact-checking, cannibalization detection, CMS taxonomy sync, NotebookLM research, Gemini TTS audio narration, 5-category scoring, 4 agents, and Gemini image generation. Optimized for Google rankings and AI citations (GEO/AEO).",
+  "version": "1.6.0",
   "author": {
     "name": "AgriciDaniel"
   },
@@ -26,6 +26,8 @@
     {"name": "blog-factcheck", "path": "skills/blog-factcheck"},
     {"name": "blog-image",     "path": "skills/blog-image"},
     {"name": "blog-persona",   "path": "skills/blog-persona"},
-    {"name": "blog-taxonomy",  "path": "skills/blog-taxonomy"}
+    {"name": "blog-taxonomy",  "path": "skills/blog-taxonomy"},
+    {"name": "blog-notebooklm", "path": "skills/blog-notebooklm"},
+    {"name": "blog-audio",      "path": "skills/blog-audio"}
   ]
 }

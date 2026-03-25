@@ -48,6 +48,10 @@ credentials.json
 # Firebase
 firebase-debug.log
 
+# NotebookLM skill data (auth, browser state, library)
+**/browser_state/
+**/auth_info.json
+
 # Generated output
 output/
 

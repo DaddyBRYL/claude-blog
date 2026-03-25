@@ -4,7 +4,7 @@
 
 This repository contains **Claude Blog**, a Tier 4 Claude Code skill for blog content
 creation, optimization, and management. It follows the Agent Skills open standard and the
-3-layer architecture (directive, orchestration, execution). 19 sub-skills, 4 specialized
+3-layer architecture (directive, orchestration, execution). 21 sub-skills, 4 specialized
 subagents, and 12 content templates are dual-optimized for Google rankings (December 2025
 Core Update, E-E-A-T) and AI citations (GEO/AEO).
 
@@ -13,10 +13,10 @@ Core Update, E-E-A-T) and AI citations (GEO/AEO).
 ```
 claude-blog/
   CLAUDE.md                          # Project instructions (this file)
-  .claude-plugin/plugin.json         # Plugin manifest (v1.5.0)
+  .claude-plugin/plugin.json         # Plugin manifest (v1.6.0)
   .mcp.json                          # MCP server configuration (nanobanana-mcp)
   pyproject.toml                     # Python packaging (3.11+)
-  skills/                            # 19 sub-skills (blog/ is the orchestrator)
+  skills/                            # 21 sub-skills (blog/ is the orchestrator)
     blog/SKILL.md                   # Main orchestrator, routing, scoring
       references/                   # 12 on-demand knowledge files
       templates/                    # 12 content templates
@@ -42,6 +42,14 @@ claude-blog/
     blog-factcheck/SKILL.md       # Statistics verification
     blog-persona/SKILL.md         # Writing persona management
     blog-taxonomy/SKILL.md        # CMS taxonomy management
+    blog-notebooklm/               # NotebookLM source-grounded research
+      SKILL.md                    # NotebookLM query sub-skill
+      references/                 # 2 reference docs (commands, troubleshooting)
+      scripts/                    # 10 Python scripts + requirements.txt
+    blog-audio/                    # Audio narration via Gemini TTS
+      SKILL.md                    # Audio generation sub-skill
+      references/                 # 1 reference doc (30 voice catalog)
+      scripts/                    # 5 Python scripts + requirements.txt
   agents/                            # 4 specialized subagents
     blog-researcher.md              # Statistics and source research
     blog-writer.md                  # Content generation
@@ -72,6 +80,8 @@ claude-blog/
 | `/blog factcheck` | Verify statistics against cited sources |
 | `/blog persona` | Manage writing personas and voice profiles |
 | `/blog taxonomy` | Tag/category CMS management |
+| `/blog notebooklm` | Query NotebookLM for source-grounded research |
+| `/blog audio` | Generate audio narration via Gemini TTS |
 
 ## Development Rules
 

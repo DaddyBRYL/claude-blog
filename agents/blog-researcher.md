@@ -77,6 +77,30 @@ If fewer than 3 suitable stock images are found, or the topic is too niche/abstr
    - "Section 3: Infographic mode - [description of data illustration]"
 3. Do NOT call MCP tools directly. The `blog-image` sub-skill handles generation
 
+### When Querying NotebookLM
+
+If the user has NotebookLM notebooks relevant to the blog topic, use them for
+Tier 1 research data (user-uploaded primary sources). This is optional and
+should never block the research workflow.
+
+1. Check if `blog-notebooklm` is configured:
+   ```bash
+   python3 skills/blog-notebooklm/scripts/run.py auth_manager.py status
+   ```
+2. If authenticated, check for relevant notebooks:
+   ```bash
+   python3 skills/blog-notebooklm/scripts/run.py notebook_manager.py search --query "[topic]"
+   ```
+3. If a matching notebook exists, query it:
+   ```bash
+   python3 skills/blog-notebooklm/scripts/run.py ask_question.py --question "[research question]" --notebook-id [id] --json
+   ```
+4. Parse the JSON response and include findings as Tier 1 sources
+5. If auth is missing or no notebooks match, skip silently and continue with WebSearch
+
+**Source classification:** NotebookLM answers are Tier 1 because they come
+exclusively from the user's own uploaded documents -- zero hallucination risk.
+
 ### When Analyzing Competition
 
 1. Search for the target keyword

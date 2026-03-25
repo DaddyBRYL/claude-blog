@@ -103,6 +103,11 @@ Spawn a `blog-researcher` agent (or do inline research with WebSearch):
    - If stock photo results are insufficient (< 3 good matches) or topic is too niche
    - Generate custom hero image and/or inline illustrations via `blog-image` sub-skill
    - Stock photos remain default - AI generation supplements, never replaces
+6. **NotebookLM research** (optional, if user has relevant notebooks):
+   - If the user mentions a NotebookLM notebook or the topic aligns with a configured notebook
+   - Query via `blog-notebooklm` for source-grounded data from user-uploaded documents
+   - Treat NotebookLM responses as Tier 1 sources (user's own primary documents)
+   - Falls back silently if not configured or not authenticated
 
 ### Phase 3: Outline Generation
 
@@ -471,4 +476,5 @@ Present the completed article with a summary:
 - Resolve [INTERNAL-LINK] placeholders with actual URLs
 - Add internal links to your existing content
 - Run `/blog analyze <file>` to verify quality score
+- Generate audio narration: `/blog audio generate <file>` (optional)
 ```

@@ -1,7 +1,7 @@
 ---
 name: blog
 description: >
-  Full-lifecycle blog engine with 17 commands, 12 content templates, 5-category
+  Full-lifecycle blog engine with 20 commands, 12 content templates, 5-category
   100-point scoring, and 4 specialized agents. Optimized for Google rankings
   (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO). Writes,
   rewrites, analyzes, outlines, audits, and repurposes blog content with
@@ -18,9 +18,9 @@ license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for quality scoring
 metadata:
   author: AgriciDaniel
-  version: "1.5.0"
+  version: "1.6.0"
 user-invokable: true
-argument-hint: "[write|rewrite|analyze|brief|calendar|cannibalization|strategy|outline|seo-check|schema|repurpose|geo|image|audit|factcheck|persona|taxonomy] [topic-or-file]"
+argument-hint: "[write|rewrite|analyze|brief|calendar|cannibalization|strategy|outline|seo-check|schema|repurpose|geo|image|audit|factcheck|persona|taxonomy|notebooklm|audio] [topic-or-file]"
 allowed-tools:
   - Read
   - Write
@@ -61,6 +61,8 @@ Perplexity, Google AI Overviews, Gemini).
 | `/blog image [generate\|edit\|setup]` | AI image generation and editing via Gemini |
 | `/blog persona [create\|list\|use\|show]` | Manage writing personas and voice profiles |
 | `/blog taxonomy [suggest\|sync\|audit]` | Tag/category management across CMS platforms |
+| `/blog notebooklm <question>` | Query NotebookLM for source-grounded research |
+| `/blog audio [generate\|voices\|setup]` | Generate audio narration of blog posts |
 | `/blog update <file>` | Update existing post with fresh stats (routes to rewrite) |
 
 ## Orchestration Logic
@@ -87,6 +89,8 @@ Perplexity, Google AI Overviews, Gemini).
    - `geo` / `aeo` / `citation` → `blog-geo` (AI citation audit)
    - `audit` / `health` → `blog-audit` (site-wide assessment)
    - `image` → `blog-image` (AI image generation and editing)
+   - `notebooklm` / `notebook` / `query-notebook` → `blog-notebooklm` (source-grounded notebook queries)
+   - `audio` / `narrate` / `tts` → `blog-audio` (audio narration generation)
    - `update` → `blog-rewrite` (with freshness-update mode)
 
 ### Platform Detection
@@ -216,6 +220,8 @@ Templates are in `templates/` and contain section structure, markers, and checkl
 | `blog-image` | AI image generation and editing for blog content via Gemini MCP |
 | `blog-persona` | Writing persona management with NNGroup framework |
 | `blog-taxonomy` | CMS taxonomy management (WordPress, Shopify, Ghost, Strapi, Sanity) |
+| `blog-notebooklm` | Query Google NotebookLM for source-grounded research from user documents |
+| `blog-audio` | Generate audio narration with Gemini TTS (summary/full/dialogue modes, 30 voices) |
 
 ## Agents
 
@@ -270,6 +276,15 @@ The `blog-image` sub-skill is both user-invocable (`/blog image generate`) and
 callable internally by `blog-write` and `blog-rewrite` when AI-generated images
 are needed (requires nanobanana-mcp configured). Falls back gracefully when MCP
 is not available.
+
+The `blog-notebooklm` sub-skill is both user-invocable (`/blog notebooklm ask`)
+and callable internally by `blog-write` and `blog-researcher` for Tier 1 research
+data from user-uploaded documents. Falls back gracefully when not authenticated.
+
+The `blog-audio` sub-skill is user-invocable (`/blog audio generate`) and can be
+offered as an optional final step after blog-write completes. Generates summary,
+full-article, or two-speaker dialogue narration via Gemini TTS. Falls back
+gracefully when `GOOGLE_AI_API_KEY` is not configured.
 
 ## Integration
 
