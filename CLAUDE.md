@@ -13,7 +13,8 @@ Core Update, E-E-A-T) and AI citations (GEO/AEO).
 ```
 claude-blog/
   CLAUDE.md                          # Project instructions (this file)
-  .claude-plugin/plugin.json         # Plugin manifest (v1.6.0)
+  .claude-plugin/plugin.json         # Plugin manifest (v1.6.2)
+  .claude-plugin/marketplace.json    # Marketplace catalog for distribution
   .mcp.json                          # MCP server configuration (nanobanana-mcp)
   pyproject.toml                     # Python packaging (3.11+)
   skills/                            # 21 sub-skills (blog/ is the orchestrator)
@@ -89,6 +90,24 @@ claude-blog/
 - Reference files should be focused and under 200 lines
 - Scripts must have docstrings, CLI interface, and JSON output
 - Follow kebab-case naming for all skill directories
-- Agents invoked via Task tool with `context: fork`, never via Bash
+- Agents invoked via Task tool, never via Bash
 - Python 3.11+ required; dependencies in pyproject.toml
 - Test with `python -m pytest tests/` after changes
+- Run `claude plugin validate .` before pushing plugin changes
+- Plugin skills auto-discovered from `skills/` directory (do not list in plugin.json)
+
+## Distribution
+
+### Anthropic Official Marketplace
+Submit at: claude.ai/settings/plugins/submit or platform.claude.com/plugins/submit
+
+### Self-Hosted Marketplace
+```
+/plugin marketplace add AgriciDaniel/claude-blog
+/plugin install claude-blog@agricidaniel-blog-tools
+```
+
+### Standalone Install (no marketplace)
+```bash
+curl -sL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
+```
