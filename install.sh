@@ -45,9 +45,6 @@ main() {
     mkdir -p "${SKILL_DIR}/blog/references"
     mkdir -p "${SKILL_DIR}/blog/templates"
     mkdir -p "${SKILL_DIR}/blog/scripts"
-    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart blog-image blog-cannibalization blog-factcheck blog-persona blog-taxonomy; do
-        mkdir -p "${SKILL_DIR}/${skill}"
-    done
     mkdir -p "${AGENT_DIR}"
 
     # Copy main skill
@@ -66,27 +63,28 @@ main() {
         cp "${SCRIPT_DIR}/skills/blog/templates/"*.md "${SKILL_DIR}/blog/templates/"
     fi
 
-    # Copy sub-skills
+    # Copy sub-skills (auto-discovers all skill directories)
     echo "→ Installing sub-skills..."
     for skill_dir in "${SCRIPT_DIR}/skills/"*/; do
         skill_name="$(basename "${skill_dir}")"
         [ "$skill_name" = "blog" ] && continue
+        mkdir -p "${SKILL_DIR}/${skill_name}"
         if [ -f "${skill_dir}SKILL.md" ]; then
             cp "${skill_dir}SKILL.md" "${SKILL_DIR}/${skill_name}/SKILL.md"
             echo "  + ${skill_name}"
         fi
+        # Copy references/ if present
+        if [ -d "${skill_dir}references" ]; then
+            mkdir -p "${SKILL_DIR}/${skill_name}/references"
+            cp "${skill_dir}references/"* "${SKILL_DIR}/${skill_name}/references/" 2>/dev/null || true
+        fi
+        # Copy scripts/ if present
+        if [ -d "${skill_dir}scripts" ]; then
+            mkdir -p "${SKILL_DIR}/${skill_name}/scripts"
+            cp "${skill_dir}scripts/"* "${SKILL_DIR}/${skill_name}/scripts/" 2>/dev/null || true
+            chmod +x "${SKILL_DIR}/${skill_name}/scripts/"*.py 2>/dev/null || true
+        fi
     done
-
-    # Copy blog-image references and scripts
-    if [ -d "${SCRIPT_DIR}/skills/blog-image/references" ]; then
-        mkdir -p "${SKILL_DIR}/blog-image/references"
-        cp "${SCRIPT_DIR}/skills/blog-image/references/"*.md "${SKILL_DIR}/blog-image/references/"
-    fi
-    if [ -d "${SCRIPT_DIR}/skills/blog-image/scripts" ]; then
-        mkdir -p "${SKILL_DIR}/blog-image/scripts"
-        cp "${SCRIPT_DIR}/skills/blog-image/scripts/"*.py "${SKILL_DIR}/blog-image/scripts/"
-        chmod +x "${SKILL_DIR}/blog-image/scripts/"*.py 2>/dev/null || true
-    fi
 
     # Create personas directory for blog-persona
     mkdir -p "${SKILL_DIR}/blog/references/personas"
@@ -121,7 +119,7 @@ main() {
     echo ""
     echo "  Installed:"
     echo "    Main skill:   blog/ (orchestrator + references + templates)"
-    echo "    Sub-skills:   19 (17 commands + 1 internal + 1 image generation)"
+    echo "    Sub-skills:   20 (19 commands + 1 internal)"
     echo "    Agents:       4 specialists"
     echo "    Scripts:      analyze_blog.py"
     echo ""
@@ -143,9 +141,12 @@ main() {
     echo "    /blog factcheck            Verify statistics against sources"
     echo "    /blog persona              Manage writing personas"
     echo "    /blog taxonomy             Tag/category CMS management"
+    echo "    /blog notebooklm <query>   Query NotebookLM for research"
+    echo "    /blog audio <file>         Generate audio narration via Gemini TTS"
     echo ""
-    echo "  Optional: AI Image Generation"
+    echo "  Optional: AI Features (same API key for both)"
     echo "    /blog image setup             Configure Gemini image generation"
+    echo "    /blog audio setup             Configure Gemini TTS audio narration"
     echo "    Requires: Google AI API key (free at https://aistudio.google.com/apikey)"
     echo ""
     echo "  Restart Claude Code to activate the new skill."

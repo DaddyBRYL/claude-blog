@@ -17,11 +17,11 @@ main() {
         echo "  Removed: ${SKILL_DIR}/blog/"
     fi
 
-    # Remove sub-skills
-    for skill in blog-write blog-rewrite blog-analyze blog-brief blog-calendar blog-strategy blog-outline blog-seo-check blog-schema blog-repurpose blog-geo blog-audit blog-chart blog-image; do
-        if [ -d "${SKILL_DIR}/${skill}" ]; then
-            rm -rf "${SKILL_DIR}/${skill}"
-            echo "  Removed: ${SKILL_DIR}/${skill}/"
+    # Remove sub-skills (auto-discovers all blog-* directories)
+    for skill_dir in "${SKILL_DIR}"/blog-*; do
+        if [ -d "${skill_dir}" ]; then
+            rm -rf "${skill_dir}"
+            echo "  Removed: ${skill_dir}/"
         fi
     done
 

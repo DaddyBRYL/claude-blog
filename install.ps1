@@ -1,6 +1,9 @@
 #!/usr/bin/env pwsh
 # claude-blog installer for Windows
 # Installs the blog skill ecosystem to ~/.claude/skills/ and ~/.claude/agents/
+#
+# One-command install:
+#   irm https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
@@ -20,7 +23,17 @@ function Main {
 
     $SkillDir = Join-Path $env:USERPROFILE ".claude" "skills"
     $AgentDir = Join-Path $env:USERPROFILE ".claude" "agents"
-    $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    $TempDir = $null
+
+    # Determine source directory (local clone or piped from irm)
+    if ($MyInvocation.MyCommand.Path -and (Test-Path (Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "skills" "blog"))) {
+        $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    } else {
+        Write-Color White "Cloning claude-blog..."
+        $TempDir = Join-Path ([System.IO.Path]::GetTempPath()) "claude-blog-install-$([System.Guid]::NewGuid().ToString('N').Substring(0,8))"
+        git clone --depth 1 https://github.com/AgriciDaniel/claude-blog.git $TempDir 2>$null
+        $ScriptDir = $TempDir
+    }
 
     # Check prerequisites
     try {
@@ -40,10 +53,6 @@ function Main {
     New-Item -ItemType Directory -Force -Path (Join-Path $SkillDir "blog" "scripts") | Out-Null
     New-Item -ItemType Directory -Force -Path $AgentDir | Out-Null
 
-    foreach ($skill in @("blog-write", "blog-rewrite", "blog-analyze", "blog-brief", "blog-calendar", "blog-strategy", "blog-outline", "blog-seo-check", "blog-schema", "blog-repurpose", "blog-geo", "blog-audit", "blog-chart", "blog-image", "blog-cannibalization", "blog-factcheck", "blog-persona", "blog-taxonomy")) {
-        New-Item -ItemType Directory -Force -Path (Join-Path $SkillDir $skill) | Out-Null
-    }
-
     # Copy main skill
     Write-Color White "Installing main skill: blog..."
     Copy-Item (Join-Path $ScriptDir "skills" "blog" "SKILL.md") (Join-Path $SkillDir "blog" "SKILL.md") -Force
@@ -58,31 +67,40 @@ function Main {
         Copy-Item (Join-Path $ScriptDir "skills" "blog" "templates" "*.md") (Join-Path $SkillDir "blog" "templates") -Force
     }
 
-    # Copy sub-skills
+    # Copy sub-skills (auto-discovers all skill directories)
     Write-Color White "Installing sub-skills..."
     Get-ChildItem -Directory (Join-Path $ScriptDir "skills") | ForEach-Object {
         $skillName = $_.Name
         if ($skillName -eq "blog") { return }
+        $skillDst = Join-Path $SkillDir $skillName
+        New-Item -ItemType Directory -Force -Path $skillDst | Out-Null
+
+        # Copy SKILL.md
         $src = Join-Path $_.FullName "SKILL.md"
-        $dst = Join-Path $SkillDir $skillName "SKILL.md"
         if (Test-Path $src) {
-            Copy-Item $src $dst -Force
+            Copy-Item $src (Join-Path $skillDst "SKILL.md") -Force
             Write-Color Green "  + $skillName"
         }
-    }
 
-    # Copy blog-image references and scripts
-    $imgRefSrc = Join-Path $ScriptDir "skills" "blog-image" "references"
-    if (Test-Path $imgRefSrc) {
-        $imgRefDst = Join-Path $SkillDir "blog-image" "references"
-        New-Item -ItemType Directory -Force -Path $imgRefDst | Out-Null
-        Copy-Item (Join-Path $imgRefSrc "*.md") $imgRefDst -Force
-    }
-    $imgScriptSrc = Join-Path $ScriptDir "skills" "blog-image" "scripts"
-    if (Test-Path $imgScriptSrc) {
-        $imgScriptDst = Join-Path $SkillDir "blog-image" "scripts"
-        New-Item -ItemType Directory -Force -Path $imgScriptDst | Out-Null
-        Copy-Item (Join-Path $imgScriptSrc "*.py") $imgScriptDst -Force
+        # Copy references/ if present
+        $refSrc = Join-Path $_.FullName "references"
+        if (Test-Path $refSrc) {
+            $refDst = Join-Path $skillDst "references"
+            New-Item -ItemType Directory -Force -Path $refDst | Out-Null
+            Get-ChildItem -File $refSrc | ForEach-Object {
+                Copy-Item $_.FullName (Join-Path $refDst $_.Name) -Force
+            }
+        }
+
+        # Copy scripts/ if present
+        $scriptSrc = Join-Path $_.FullName "scripts"
+        if (Test-Path $scriptSrc) {
+            $scriptDst = Join-Path $skillDst "scripts"
+            New-Item -ItemType Directory -Force -Path $scriptDst | Out-Null
+            Get-ChildItem -File $scriptSrc | ForEach-Object {
+                Copy-Item $_.FullName (Join-Path $scriptDst $_.Name) -Force
+            }
+        }
     }
 
     # Create personas directory for blog-persona
@@ -116,6 +134,11 @@ function Main {
         }
     }
 
+    # Cleanup temp directory if used
+    if ($TempDir -and (Test-Path $TempDir)) {
+        Remove-Item -Recurse -Force $TempDir
+    }
+
     # Summary
     Write-Color Cyan @"
 
@@ -127,7 +150,7 @@ function Main {
 
     Write-Color White "Installed:"
     Write-Color Green "  Main skill:   blog/ (orchestrator + 12 references + 12 templates)"
-    Write-Color Green "  Sub-skills:   19 (17 commands + 1 internal + 1 image generation)"
+    Write-Color Green "  Sub-skills:   20 (19 commands + 1 internal)"
     Write-Color Green "  Agents:       4 specialists"
     Write-Color Green "  Scripts:      analyze_blog.py"
     Write-Color White ""
@@ -149,9 +172,12 @@ function Main {
     Write-Color Cyan  "  /blog factcheck            Verify statistics against sources"
     Write-Color Cyan  "  /blog persona              Manage writing personas"
     Write-Color Cyan  "  /blog taxonomy             Tag/category CMS management"
+    Write-Color Cyan  "  /blog notebooklm <query>   Query NotebookLM for research"
+    Write-Color Cyan  "  /blog audio <file>         Generate audio narration via Gemini TTS"
     Write-Color White ""
-    Write-Color White "Optional: AI Image Generation"
+    Write-Color White "Optional: AI Features (same API key for both)"
     Write-Color Cyan  "  /blog image setup             Configure Gemini image generation"
+    Write-Color Cyan  "  /blog audio setup             Configure Gemini TTS audio narration"
     Write-Color White "  Requires: Google AI API key (free at https://aistudio.google.com/apikey)"
     Write-Color White ""
     Write-Color Yellow "Restart Claude Code to activate the new skill."
