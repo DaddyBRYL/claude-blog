@@ -7,7 +7,7 @@
 ![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-blueviolet)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue)
-![Sub-Skills](https://img.shields.io/badge/Sub--Skills-19-orange)
+![Sub-Skills](https://img.shields.io/badge/Sub--Skills-22-orange)
 
 claude-blog is a Claude Code skill ecosystem for creating, optimizing, and managing blog content at scale. It generates complete articles, briefs, calendars, and schemas, dual-optimized for Google rankings and AI citation platforms (ChatGPT, Perplexity, AI Overviews).
 
@@ -77,8 +77,11 @@ Restart Claude Code after installation to activate.
 | `/blog factcheck <file>` | Verify statistics against cited sources |
 | `/blog persona [create\|list\|apply]` | Manage writing personas and voice profiles |
 | `/blog taxonomy [sync\|audit\|suggest]` | Tag/category CMS management |
+| `/blog notebooklm <question>` | Query NotebookLM for source-grounded research |
+| `/blog audio [generate\|voices\|setup]` | Generate audio narration via Gemini TTS |
+| `/blog google [command] [args]` | Google API data: PSI, CrUX, GSC, GA4, NLP, YouTube, Keywords |
 
-> **19 sub-skills total**: 17 user-facing commands above + `blog-chart` (internal SVG generation) + `blog-image` (also callable internally by write/rewrite).
+> **22 sub-skills total**: 20 user-facing commands above + `blog-chart` (internal SVG generation) + `blog-image` (also callable internally by write/rewrite).
 
 ## Features
 
@@ -120,8 +123,22 @@ Every article targets both Google rankings and AI citation platforms:
 - Pixabay/Unsplash/Pexels image sourcing with alt text
 - AI image generation via Gemini (hero images, inline illustrations, social cards), optional, requires free Google AI API key
 - Built-in SVG chart generation (bar, grouped bar, lollipop, donut, line, area, radar)
+- YouTube video embedding with srcdoc lazy loading, noscript AI crawler fallback, and quality scoring
 - Image density targets by content type
 - Image URL verification (HTTP 200 check before embedding)
+
+### Google API Integration (NEW in v1.6.5)
+13 commands across 4 credential tiers, all free at normal usage:
+- **Tier 0** (API key): PageSpeed Insights, CrUX Core Web Vitals (25-week history), YouTube video search, NLP entity analysis
+- **Tier 1** (OAuth): Search Console performance, URL Inspection, Indexing API
+- **Tier 2** (GA4): Organic traffic reports
+- **Tier 3** (Ads): Google Ads Keyword Planner
+
+### NotebookLM Research
+Query Google NotebookLM for source-grounded research from user-uploaded documents. Tier 1 data quality with zero hallucination risk.
+
+### Audio Narration
+Generate audio narration via Gemini TTS. Three modes: summary (200-300 words), full article, and two-speaker dialogue. 30 voices, 80+ languages.
 
 ### Platform Support
 Next.js/MDX, Astro, Hugo, Jekyll, WordPress, Ghost, 11ty, Gatsby, and static HTML.
@@ -134,10 +151,10 @@ claude-blog/
 │   └── plugin.json                     # Plugin metadata (name, description, author)
 ├── skills/
 │   ├── blog/                           # Main orchestrator
-│   │   ├── SKILL.md                    # Routes all 12 commands
-│   │   ├── references/                 # 12 on-demand reference docs
+│   │   ├── SKILL.md                    # Routes all 21 commands
+│   │   ├── references/                 # 13 on-demand reference docs
 │   │   └── templates/                  # 12 content type templates
-│   ├── blog-write/SKILL.md            # Sub-skills (12 user-facing + 1 internal)
+│   ├── blog-write/SKILL.md            # Sub-skills (21 user-facing + 1 internal)
 │   ├── blog-rewrite/SKILL.md
 │   ├── blog-analyze/SKILL.md
 │   ├── blog-brief/SKILL.md
@@ -157,7 +174,20 @@ claude-blog/
 │   ├── blog-cannibalization/SKILL.md  # Keyword overlap detection
 │   ├── blog-factcheck/SKILL.md        # Statistics verification
 │   ├── blog-persona/SKILL.md          # Writing persona management
-│   └── blog-taxonomy/SKILL.md         # CMS taxonomy management
+│   ├── blog-taxonomy/SKILL.md         # CMS taxonomy management
+│   ├── blog-notebooklm/              # NotebookLM source-grounded research
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   └── scripts/                   # 10 Python scripts + venv wrapper
+│   ├── blog-audio/                    # Audio narration via Gemini TTS
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   └── scripts/                   # 5 Python scripts + venv wrapper
+│   └── blog-google/                   # Google API integration (NEW v1.6.5)
+│       ├── SKILL.md                   # 13 commands, 4 credential tiers
+│       ├── references/                # 3 reference docs (auth, API, quotas)
+│       ├── scripts/                   # 11 Google API scripts + venv wrapper
+│       └── assets/templates/          # 3 report templates
 ├── agents/                             # 4 specialized agents
 │   ├── blog-researcher.md
 │   ├── blog-writer.md
@@ -200,7 +230,7 @@ Windows (PowerShell):
 
 ## Integration
 
-Chart generation is built-in. No external dependencies required for full functionality.
+Chart generation and YouTube video embedding are built-in. Google API data requires a free API key (see `/blog google setup`).
 
 **Optional companion skills** (for deeper analysis of published pages):
 
@@ -209,17 +239,18 @@ Chart generation is built-in. No external dependencies required for full functio
 | `/seo` | Deep SEO analysis of published blog pages |
 | `/seo-schema` | Schema markup validation and generation |
 | `/seo-geo` | AI citation optimization audit |
+| `/seo-google` | Google API data (shared config with blog-google) |
 
 ## Documentation
 
 Detailed documentation is available in [docs/](docs/):
 
-- [Installation Guide](docs/INSTALLATION.md) -- Unix, macOS, Windows, manual install
-- [Command Reference](docs/COMMANDS.md) -- Full 12-command reference with examples
-- [Architecture](docs/ARCHITECTURE.md) -- System design and component overview
-- [Templates](docs/TEMPLATES.md) -- Template reference and customization
-- [Troubleshooting](docs/TROUBLESHOOTING.md) -- Common issues and fixes
-- [MCP Integration](docs/MCP-INTEGRATION.md) -- Optional MCP server setup
+- [Installation Guide](docs/INSTALLATION.md): Unix, macOS, Windows, manual install
+- [Command Reference](docs/COMMANDS.md): Full command reference with examples
+- [Architecture](docs/ARCHITECTURE.md): System design and component overview
+- [Templates](docs/TEMPLATES.md): Template reference and customization
+- [Troubleshooting](docs/TROUBLESHOOTING.md): Common issues and fixes
+- [MCP Integration](docs/MCP-INTEGRATION.md): Optional MCP server setup
 
 ## Contributing
 
