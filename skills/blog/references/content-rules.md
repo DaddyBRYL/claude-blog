@@ -1,6 +1,6 @@
 # Content Structure Rules -- Dual Optimization
 
-## Answer-First Formatting (+340% AI Citation Improvement)
+## Answer-First Formatting (Strong AI Citation Improvement)
 
 The most impactful single optimization. Every H2 section must open with a
 40-60 word paragraph that:

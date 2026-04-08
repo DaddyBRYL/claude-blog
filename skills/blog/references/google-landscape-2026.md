@@ -89,7 +89,8 @@ Identifies content from forums, social media, niche blogs where people share
 ### Active (Recommend Freely)
 - BlogPosting, Article
 - Organization, LocalBusiness
-- FAQPage (keep answers 40-60 words)
+- FAQPage (keep answers 40-60 words; note: rich results only shown for government/health
+  sites since Aug 2023 — still valuable for AI citation, not for Google rich snippets)
 - BreadcrumbList
 - Person (author credentials)
 - Product, SoftwareApplication
@@ -98,7 +99,9 @@ Identifies content from forums, social media, niche blogs where people share
 ### Deprecated (Never Recommend)
 - HowTo (Sept 2023)
 - SpecialAnnouncement (July 2025)
-- Practice Problem, Dataset for general search, Sitelinks Search Box, Q&A (Jan 2026)
+- Practice Problem (Jan 2026, confirmed via Google Search Console changelog)
+- Dataset for general search, Sitelinks Search Box, Q&A (Jan 2026 per secondary sources;
+  primary Google documentation not directly confirmed for these three)
 
 ### Critical Technical Note
 Schema must appear in HTML source, not injected via JavaScript.

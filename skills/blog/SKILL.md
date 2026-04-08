@@ -109,10 +109,10 @@ Every blog post targets these 6 optimization pillars:
 
 | Pillar | Impact | Implementation |
 |--------|--------|---------------|
-| Answer-First Formatting | +340% AI citations | Every H2 opens with 40-60 word stat-rich paragraph |
+| Answer-First Formatting | Strong AI citation lift | Every H2 opens with 40-60 word stat-rich paragraph |
 | Real Sourced Data | E-E-A-T trust | Tier 1-3 sources only, inline attribution |
 | Visual Media | Engagement + citations | Pixabay/Unsplash images + AI generation via Gemini + built-in SVG charts + YouTube video embeds |
-| FAQ Schema | +28% AI citations | Structured FAQ with 40-60 word answers |
+| FAQ Schema | AI citation signal | Structured FAQ with 40-60 word answers |
 | Content Structure | AI extractability | 50-150 word chunks, question headings, proper H hierarchy |
 | Freshness Signals | 76% of top citations | Updated within 30 days, dateModified schema |
 

@@ -97,8 +97,10 @@ freshness-dependent platform. Content older than 1 week sees sharp citation drop
 - Strategy: Authentic participation in 3-5 subreddits BEFORE any promotional content
 
 **Review Platforms (B2B)**:
-- G2 accounts for 22-23% of review-platform citations
-- 33% of review citations come from G2
+- G2 accounts for 22-23% of review-platform citations (Radix via G2's own blog;
+  self-reported — Hall.com's independent analysis found G2 at only 8.25% of B2B
+  software citations in ChatGPT)
+- 33% of review citations come from G2 (Profound via G2's blog; treat as directional)
 - Multi-platform presence: 4.6-6.3 citations vs 1.8 without (2.6-3.5x multiplier)
 
 **Wikipedia/Wikidata**:
@@ -139,7 +141,8 @@ Use SSR, SSG, or ISR. Test by disabling JS and reloading.
 - Crawlers implement 3-5 second hard timeouts (Getpassionfruit)
 - Core Web Vitals are a constraint, not a growth lever - good CWV doesn't reliably
   outperform, but severe LCP failure creates disadvantage (Search Engine Land, 107,352 pages)
-- 46% of AI agent visits begin in reading mode (text-only, no JS/CSS)
+- 46% of AI agent visits begin in reading mode (Kevin Indig personal test of ~100
+  agentic actions; not a large-scale study — treat as directional)
 - Slow pages are excluded from AI citation candidate pools entirely
 - Vercel analysis of 500+ million GPTBot fetches found zero evidence of JS execution
 
@@ -193,7 +196,8 @@ Readability directly impacts AI citation rates. Content in the Flesch 60-75
 band receives significantly more AI citations across all major platforms.
 
 ### Flesch Score & AI Citation Rates
-- **Flesch 60-75 = 31% more AI citations** (Spotlight, 18,000 monitored prompts)
+- **Flesch 60-75 = 31% more AI citations** (Spotlight, 18,000 monitored prompts;
+  self-reported internal data from a commercial platform, no independent verification)
 - Teams improving Flesch from 52→68 saw parallel citation lifts within two
   crawl windows
 - Content that is too complex (Flesch <50) or too simple (Flesch >80) gets

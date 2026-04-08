@@ -256,7 +256,7 @@ FAQPage
       "name": "How does technical SEO affect AI visibility?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Technical SEO directly determines whether AI crawlers can access and extract your content. Since AI crawlers do not execute JavaScript, server-side rendered HTML with structured data markup is essential. Sites with proper technical SEO see up to 340% more AI citations."
+        "text": "Technical SEO directly determines whether AI crawlers can access and extract your content. Since AI crawlers do not execute JavaScript, server-side rendered HTML with structured data markup is essential. Sites with proper technical SEO and accessible content structure are significantly more likely to earn AI citations."
       }
     },
     {

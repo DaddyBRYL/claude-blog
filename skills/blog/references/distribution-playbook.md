@@ -312,7 +312,7 @@ and early traffic signals that benefit both traditional and AI search.
 | Formula | Example |
 |---------|---------|
 | `[Stat]: [Key Finding]` | "61% CTR Decline: How AI Overviews Are Reshaping Search" |
-| `How [Strategy] Delivers [Outcome]` | "How Answer-First Formatting Delivers 340% More AI Citations" |
+| `How [Strategy] Delivers [Outcome]` | "How Answer-First Formatting Drives More AI Citations" |
 | `[Number] [Things] That [Outcome]` | "5 Off-Site Signals That Drive AI Citations (Data Inside)" |
 | `The [Adjective] Truth About [Topic]` | "The Uncomfortable Truth About SEO in 2026" |
 | `We Analyzed [N] [Things]. Here's What We Found` | "We Analyzed 75,000 Brands. Here's What Drives AI Visibility" |
