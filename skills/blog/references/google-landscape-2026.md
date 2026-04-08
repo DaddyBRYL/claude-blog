@@ -94,11 +94,13 @@ Identifies content from forums, social media, niche blogs where people share
 - BreadcrumbList
 - Person (author credentials)
 - Product, SoftwareApplication
-- AggregateRating, Review
+- AggregateRating, Review (only supported on eligible types: Product, Recipe,
+  SoftwareApplication, LocalBusiness, Movie, Book — NOT on BlogPosting directly)
 
 ### Deprecated (Never Recommend)
 - HowTo (Sept 2023)
 - SpecialAnnouncement (July 2025)
+- ClaimReview (June 2025, Google structured data simplification)
 - Practice Problem (Jan 2026, confirmed via Google Search Console changelog)
 - Dataset for general search, Sitelinks Search Box, Q&A (Jan 2026 per secondary sources;
   primary Google documentation not directly confirmed for these three)

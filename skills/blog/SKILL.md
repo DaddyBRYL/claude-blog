@@ -306,4 +306,4 @@ Chart generation is built-in - no external dependencies required for full functi
 | Skip source verification | Broken links and wrong data destroy trust |
 | Use tier 4-5 sources | Low authority hurts E-E-A-T |
 | Generate without research | AI-generated consensus content is penalized |
-| Skip visual elements entirely | Blogs with images get 94% more views |
+| Skip visual elements entirely | Blogs with images get significantly more views and social engagement |

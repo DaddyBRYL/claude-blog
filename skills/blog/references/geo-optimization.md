@@ -141,8 +141,7 @@ Use SSR, SSG, or ISR. Test by disabling JS and reloading.
 - Crawlers implement 3-5 second hard timeouts (Getpassionfruit)
 - Core Web Vitals are a constraint, not a growth lever - good CWV doesn't reliably
   outperform, but severe LCP failure creates disadvantage (Search Engine Land, 107,352 pages)
-- 46% of AI agent visits begin in reading mode (Kevin Indig personal test of ~100
-  agentic actions; not a large-scale study — treat as directional)
+- Top 10 domains capture 46% of all ChatGPT citations per topic (Growth Memo, Mar 2026)
 - Slow pages are excluded from AI citation candidate pools entirely
 - Vercel analysis of 500+ million GPTBot fetches found zero evidence of JS execution
 
