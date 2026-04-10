@@ -13,7 +13,7 @@ Core Update, E-E-A-T) and AI citations (GEO/AEO).
 ```
 claude-blog/
   CLAUDE.md                          # Project instructions (this file)
-  .claude-plugin/plugin.json         # Plugin manifest (v1.6.5)
+  .claude-plugin/plugin.json         # Plugin manifest (v1.6.9)
   .claude-plugin/marketplace.json    # Marketplace catalog for distribution
   .mcp.json                          # MCP server configuration (nanobanana-mcp)
   pyproject.toml                     # Python packaging (3.11+)
